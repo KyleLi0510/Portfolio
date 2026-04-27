@@ -883,7 +883,9 @@
         .horizontal-gallery {
             display: flex;
             gap: 3px;
-            height: 500px;
+            height: 65vh;
+            min-height: 500px;
+            max-height: 720px;
             overflow-x: auto;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
@@ -894,19 +896,18 @@
         .h-gallery-item {
             position: relative;
             flex: 0 0 auto;
-            width: 45vw;
             height: 100%;
+            width: auto;
             scroll-snap-align: start;
             overflow: hidden;
+            background: #111;
         }
         .h-gallery-item img {
-            width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-        .h-gallery-item:hover img {
-            transform: scale(1.03);
+            width: auto;
+            max-width: none;
+            object-fit: contain;
+            display: block;
         }
 
         .project5-hero {
@@ -1097,8 +1098,9 @@
             .juxtaposition-container {
                 grid-template-columns: 1fr;
             }
-            .horizontal-gallery, .yy-horizontal {
-                height: 350px;
+            .horizontal-gallery {
+                height: 55vh;
+                min-height: 420px;
             }
             .h-gallery-item, .yy-item {
                 width: 80vw;
@@ -1734,7 +1736,7 @@
     </div>
 
     <div class="horizontal-gallery-section">
-        <p class="gallery-section-label">影像切片 · 9帧</p>
+        <p class="gallery-section-label">影像切片 · 16帧</p>
         <div class="horizontal-gallery">
             <div class="h-gallery-item">
                 <img src="./ls1.jpg" alt="">
@@ -1762,6 +1764,27 @@
             </div>
             <div class="h-gallery-item">
                 <img src="./ls9.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls11.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls12.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls13.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls14.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls15.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls16.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls17.jpg" alt="">
             </div>
         </div>
     </div>
@@ -1875,7 +1898,7 @@
                     <p class="image-desc" style="font-size: 0.8rem;">寥寥几次快门</p>
                 </div>
             </div>
-            <div class="image-item">
+            <div class="imageitem">
                 <img src="./yuyu-wedding4.jpg" alt="老人婚礼4" style="height: 280px;">
                 <div class="image-overlay" style="padding: 30px 15px 15px;">
                     <p class="image-tag">补齐 · 圆满</p>
