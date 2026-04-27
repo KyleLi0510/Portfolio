@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李源凯 | 影视人类学作品集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #f7f5f0;
+            --bg-secondary: #ede9e0;
+            --text-primary: #2c2c2c;
+            --text-secondary: #6b6b6b;
+            --text-muted: #9a9a9a;
+            --accent: #8b7355;
+            --accent-light: #a89070;
+            --border: #d4cfc7;
+            --white: #ffffff;
+            --dark: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-weight: 300;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(247, 245, 240, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-logo {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* ===== COVER / HERO ===== */
+        .cover {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--dark);
+        }
+
+        .cover-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            filter: brightness(0.6);
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cover-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0.7;
+        }
+
+        .cover-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 300;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            letter-spacing: 0.1em;
+        }
+
+        .cover-subtitle {
+            font-size: 1rem;
+            letter-spacing: 0.2em;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .cover-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            opacity: 0.5;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 100px 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 400;
+            line-height: 1.3;
+        }
+
+        /* ===== BIO ===== */
+        .bio {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 120px 24px;
+        }
+
+        .bio-text {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.15rem;
+            line-height: 2.4;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        .bio-text p {
+            margin-bottom: 24px;
+            text-indent: 2em;
+        }
+
+        .bio-meta {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 48px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .bio-meta-item {
+            text-align: center;
+        }
+
+        .bio-meta-item .num {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .bio-meta-item .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .awards-bar {
+            margin-top: 48px;
+            padding: 24px 32px;
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+        }
+
+        .awards-bar p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 2;
+            margin: 0;
+        }
+
+        /* ===== PROJECTS INDEX ===== */
+        .projects-index {
+            background: var(--bg-secondary);
+            padding: 100px 24px;
+        }
+
+        .projects-index-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .project-index-card {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 32px;
+            padding: 32px 0;
+            border-bottom: 1px solid var(--border);
+            align-items: start;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .project-index-card:hover {
+            padding-left: 16px;
+        }
+
+        .project-index-card:last-child {
+            border-bottom: none;
+        }
+
+        .project-num {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 2.5rem;
+            color: var(--border);
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .project-index-card:hover .project-num {
+            color: var(--accent);
+        }
+
+        .project-index-info h3 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .project-index-info .meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .project-index-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .project-index-info .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--bg-primary);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-top: 12px;
+        }
+
+        /* ===== PROJECT 1 FULL ===== */
+        .project-full {
+            padding: 0;
+            max-width: 100%;
+        }
+
+        .opening-text {
+            background: var(--dark);
+            color: var(--bg-primary);
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .opening-text-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .opening-text h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            line-height: 2.2;
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .opening-text .en {
+            font-size: 0.8rem;
+            line-height: 2;
+            color: rgba(247, 245, 240, 0.5);
+            font-weight: 300;
+        }
+
+        .project-hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 24px 40px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 32px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .meta-item strong {
+            display: block;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 2px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .project-title {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .project-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .synopsis {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .synopsis p {
+            font-size: 1rem;
+            line-height: 2.2;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .synopsis .quote {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            border-left: 2px solid var(--accent);
+            padding-left: 24px;
+            margin: 32px 0;
+            font-style: italic;
+            line-height: 2;
+        }
+
+        /* ===== VIDEO ===== */
+        .video-section {
+            background: var(--bg-secondary);
+            padding: 60px 24px;
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto 24px;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            max-width: 900px;
+            margin: 24px auto 0;
+        }
+
+        @media (max-width: 768px) {
+            .video-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===== IMAGE GRID ===== */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--border);
+        }
+
+        @media (max-width: 768px) {
+            .image-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .image-item {
+            position: relative;
+            overflow: hidden;
+            background: var(--bg-primary);
+            aspect-ratio: 4/3;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 20px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+            color: var(--white);
+        }
+
+        .image-caption .caption-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        .image-caption .caption-text {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* ===== FIELD NOTES ===== */
+        .field-notes {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        .note-block {
+            margin-bottom: 56px;
+        }
+
+        .note-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .note-label {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .note-label::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .note-block p {
+            font-size: 0.95rem;
+            line-height: 2.2;
+            color: var(--text-secondary);
+            text-align: justify;
+        }
+
+        /* ===== VOICES ===== */
+        .voices {
+            background: var(--bg-secondary);
+            padding: 80px 24px;
+        }
+
+        .voices-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .voice-item {
+            margin-bottom: 48px;
+            padding-left: 28px;
+            border-left: 1px solid var(--border);
+            position: relative;
+        }
+
+        .voice-item::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 8px;
+            width: 5px;
+            height: 5px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .voice-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .voice-quote {
+            font-family: 'Noto Serif SC', serif;
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .voice-source {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .voice-source strong {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* ===== FOOTER / CONTACT ===== */
+        .contact-section {
+            background: var(--dark);
+            color: var(--bg-primary);
+            padding: 120px 24px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-family: 'Noto Serif SC', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 300;
+            margin-bottom: 32px;
+            letter-spacing: 0.1em;
+        }
+
+        .contact-section p {
+            font-size: 0.9rem;
+            color: rgba(247, 245, 240, 0.6);
+            line-height: 2;
+            margin-bottom: 8px;
+        }
+
+        .contact-section .email {
+            font-size: 1.1rem;
+            color: rgba(247, 245, 240, 0.9);
+            margin-top: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-bottom {
+            padding: 24px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav { padding: 16px 24px; }
+            .nav-links { gap: 20px; }
+            .project-index-card { grid-template-columns: 60px 1fr; gap: 16px; }
+            .project-num { font-size: 1.8rem; }
+            section { padding: 60px 24px; }
+            .bio-meta { gap: 24px; }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="#" class="nav-logo">李源凯</a>
+        <ul class="nav-links">
+            <li><a href="#bio">履历</a></li>
+            <li><a href="#projects">项目</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+    </nav>
+
+    <!-- Cover -->
+    <section class="cover" id="top">
+        <img src="./cover.jpg" alt="封面" class="cover-image">
+        <div class="cover-content">
+            <p class="cover-label">影视人类学作品集</p>
+            <h1 class="cover-title">李源凯</h1>
+            <p class="cover-subtitle">Visual Ethnography Portfolio</p>
+        </div>
+        <div class="cover-scroll">SCROLL</div>
+    </section>
+
+    <!-- Bio -->
+    <section class="bio" id="bio">
+        <div class="bio-text">
+            <p>
+                李源凯，2002年生于四川广元。天津师范大学播音与主持艺术、世界史双学位，中央民族大学影视人类学硕士在读。六次跨民族田野调查，足迹遍及甘孜藏区、大理白族、北京皮村、大凉山彝区、青海同仁、大理南涧，累计产出41小时影像素材与数万字田野日志。
+            </p>
+            <p>
+                作品聚焦社会现实与人文关怀，以参与式观察深入城市边缘与民族社区，在流动与迁徙中记录生命的温度与文化的根系。入围中国纪录片学院奖、亚洲国际青年电影节最佳纪录短片提名，获西湖青年纪录片放映周最佳短纪录片。
+            </p>
+        </div>
+        <div class="bio-meta">
+            <div class="bio-meta-item">
+                <span class="num">6</span>
+                <span class="label">次田野调查</span>
+            </div>
+            <div class="bio-meta-item">
+                <span class="num">41</span>
+                <span class="label">小时影像素材</span>
+            </div>
+            <div class="bio-meta-item">
+                <span class="num">6</span>
+                <span class="label">部纪录作品</span>
+            </div>
+        </div>
+        <div class="awards-bar">
+            <p>
+                中国纪录片学院奖入围 · 亚洲国际青年电影节最佳纪录短片提名 · 西湖青年纪录片放映周最佳短纪录片
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Index -->
+    <div class="projects-index" id="projects">
+        <div class="projects-index-inner">
+            <div class="section-header">
+                <p class="section-label">Projects</p>
+                <h2 class="section-title">项目导引</h2>
+            </div>
+
+            <a href="#project1" class="project-index-card">
+                <div class="project-num">01</div>
+                <div class="project-index-info">
+                    <h3>我们的流向</h3>
+                    <p class="meta">北京皮村 · 新工人文学小组 · 2025</p>
+                    <p>纪录皮村文学小组在拆迁与搬迁中的最后半年，探索城市边缘群体的文化生产与身份建构。</p>
+                    <span class="tag">民族志纪录片 · 120分钟</span>
+                </div>
+            </a>
+
+            <div class="project-index-card">
+                <div class="project-num">02</div>
+                <div class="project-index-info">
+                    <h3>新年可煞</h3>
+                    <p class="meta">甘孜稻城俄牙同乡 · 藏族新年习俗 · 2025</p>
+                    <p>抢救性记录川滇交界藏区独特的"可煞"新年吐槽会习俗，探讨仪式作为社会记忆载体的当代意义。</p>
+                    <span class="tag">独立拍摄 · 民族志档案</span>
+                </div>
+            </div>
+
+            <div class="project-index-card">
+                <div class="project-num">03</div>
+                <div class="project-index-info">
+                    <h3>玛薇影像</h3>
+                    <p class="meta">大凉山昭觉 · 玛薇社工服务中心协助出品 · 2025</p>
+                    <p>协助社工组织记录彝族社区文化传承与困境儿童关怀，探索影像赋权与社区发展的互动机制。</p>
+                    <span class="tag">社区影像 · 协作出品</span>
+                </div>
+            </div>
+
+            <div class="project-index-card">
+                <div class="project-num">04</div>
+                <div class="project-index-info">
+                    <h3>有鱼</h3>
+                    <p class="meta">大理南涧 · 清华大学影视传播研究中心出品 · 2025</p>
+                    <p>追随县域中产的生存策略，以布尔迪厄资本理论框架呈现当代中国"悬浮"状态下的真实境遇。</p>
+                    <span class="tag">最佳短纪录片 · 西湖青年纪录片放映周</span>
+                </div>
+            </div>
+
+            <div class="project-index-card">
+                <div class="project-num">05</div>
+                <div class="project-index-info">
+                    <h3>燕园生境</h3>
+                    <p class="meta">北京大学 · 山水自然保护中心、北大博古睿研究中心出品 · 2025-2026</p>
+                    <p>历时10-12个月完整记录北大校园四季生态，观察"社会-生态系统"中的现代共生实践。</p>
+                    <span class="tag">生态纪录片 · 系列三集</span>
+                </div>
+            </div>
+
+            <div class="project-index-card">
+                <div class="project-num">06</div>
+                <div class="project-index-info">
+                    <h3>傣陶</h3>
+                    <p class="meta">云南西双版纳 · 清华大学美术学院陶瓷艺术设计系出品 · 2025</p>
+                    <p>追踪民间陶艺人的制作技艺与文化传承，呈现"技艺-生活-信仰"的有机关联与当代转型。</p>
+                    <span class="tag">工艺纪录片 · 清华美院合作</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project 1 Full -->
+    <div class="project-full" id="project1">
+        <div class="opening-text">
+            <div class="opening-text-inner">
+                <h2>
+                    北京朝阳 · 新工人文学小组
+                </h2>
+                <p class="en">
+                    Beijing, Chaoyang District · New Workers' Literature Group<br>
+                    Since 2014, it has been holding weekly literature classes for workers in Picun Village every Saturday.<br>
+                    In 2023, due to demolition, they moved out of the original site of the museum and into the shared kitchen of Tongxin Experimental School.<br>
+                    Now, with the school's lease approaching its end, this will be our last half year in Picun Village.
+                </p>
+            </div>
+        </div>
+
+        <div class="project-hero">
+            <div class="project-meta">
+                <div class="meta-item">
+                    <strong>时间</strong>
+                    2025.01 — 2025.06
+                </div>
+                <div class="meta-item">
+                    <strong>地点</strong>
+                    北京 · 皮村
+                </div>
+                <div class="meta-item">
+                    <strong>类型</strong>
+                    民族志纪录片
+                </div>
+                <div class="meta-item">
+                    <strong>时长</strong>
+                    120分钟
+                </div>
+            </div>
+            <h1 class="project-title">我们的流向</h1>
+            <p class="project-subtitle">The Journey of Immigrant Worker</p>
+        </div>
+
+        <div class="synopsis">
+            <p>
+                2025年6月，北京皮村新工人文学小组将面临他们的第二次搬迁。影片以这场熟悉而紧迫的空间危机为线索，从杏树追忆、下河捞车、侧街找房等场景中纪录小组成员们历时半年的自我建构。
+            </p>
+            <p>
+                影片同时着眼时代变迁下"新工人"定义边界的扩张——它不再仅仅指向传统的农村户籍进城务工者，还包含如今那些失去原有社会位置、于城市边缘重新定位身份的人们。
+            </p>
+            <p class="quote">
+                "我们是矿工、家政工、泥瓦匠、育儿嫂、机械工人……也是用汗水、用厄运、用顽强、用永不低头的力量书写诗歌的人。"
+            </p>
+            <p>
+                《我们的流向》是皮村文学小组在2025年关键节点的影像记录，他们在流动中用文字书写小我历史，用文化证明自己正鲜活地存在。
+            </p>
+        </div>
+
+        <div class="video-section">
+            <div class="video-grid">
+                <div>
+                    <div class="video-container">
+                        <iframe src="//player.bilibili.com/player.html?bvid=BV1Jyo1BuE7s&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    </div>
+                    <p class="video-note">预告片 · 新工人文学小组《相聚在皮村》十周年之歌</p>
+                </div>
+                <div>
+                    <div class="video-container">
+                        <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=116477365585642&bvid=BV1J1o1BBEEk&cid=37886363893&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    </div>
+                    <p class="video-note">杏树下 · 我们的十年追忆活动</p>
+                </div>
+            </div>
+            <p class="video-note" style="margin-top:16px; font-size:0.75rem;">完整民族志影像（2小时）可邮件索取观影链接</p>
+        </div>
+
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="./p1.jpg" alt="开篇文字">
+                <div class="image-caption">
+                    <div class="caption-label">时空 · 迁徙</div>
+                    <div class="caption-text">2025年，皮村最后半年</div>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p2.jpg" alt="小海捞车">
+                <div class="image-caption">
+                    <div class="caption-label">执念 · 沉车</div>
+                    <div class="caption-text">"我抱着沉车，就想到当年尼采抱着都灵之马那样，想哭。"——小海</div>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p3.jpg" alt="杏树下">
+                <div class="image-caption">
+                    <div class="caption-label">根系 · 十年</div>
+                    <div class="caption-text">在博物馆拆迁处依杏树席地而坐，夜色下朗诵诗歌</div>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p4.jpg" alt="搬运白菜">
+                <div class="image-caption">
+                    <div class="caption-label">在场 · 劳作</div>
+                    <div class="caption-text">参与文学小组日常劳作，志愿者与拍摄者的双重身份</div>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p5.jpg" alt="周边产品">
+                <div class="image-caption">
+                    <div class="caption-label">物证 · 生计</div>
+                    <div class="caption-text">拍摄文学小组周边产品，运营的重要收入来源</div>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p6.jpg" alt="帆布包">
+                <div class="image-caption">
+                    <div class="caption-label">符号 · 希望</div>
+                    <div class="caption-text">"走在路上，我咬着希望"——帆布包上的同心学校</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="field-notes">
+            <div class="note-block">
+                <div class="note-label">空间</div>
+                <p>
+                    皮村文学小组成立于2014年，十年间在打工博物馆原址生长。2023年博物馆拆迁后，迁入同心实验学校"共享厨房"继续授课。2025年6月，学校租期将至，他们将面临第二次搬迁。我进入时，他们正在临时空间与不确定的未来之间重建日常。
+                </p>
+            </div>
+            <div class="note-block">
+                <div class="note-label">方法</div>
+                <p>
+                    我并非隐形观察者。我拍摄文学小组周边产品——这是他们运营的重要收入来源；我组织历史音像整理留存——打捞即将消散的集体记忆；我协助策划"杏树下·我们的十年"追忆活动——在博物馆拆迁处依杏树席地而坐，夜色下朗诵诗歌，将写满期许的纸条埋入土中。镜头内外的身份不断切换，这让我意识到：影视人类学的"参与"不是干扰，而是另一种真实。
+                </p>
+            </div>
+            <div class="note-block">
+                <div class="note-label">追问</div>
+                <p>
+                    小海的三轮车意外坠江，他执意下水捞车。"我抱着沉车，就想到当年尼采抱着都灵之马那样，想哭。"这句话让我意识到：人们对于精神自由的执念与追求，如何在最狼狈的时刻闪现。当物理空间一再消逝，那些对文学的热忱与对理想的坚守，能否找到新的安放之处？
+                </p>
+            </div>
+        </div>
+
+        <div class="voices">
+            <div class="voices-inner">
+                <div class="section-header" style="margin-bottom: 60px;">
+                    <p class="section-label">声音档案</p>
+                    <h2 class="section-title">田野中的声音</h2>
+                </div>
+
+                <div class="voice-item">
+                    <p class="voice-quote">
+                        "诗歌它对我，它不是娱乐，不是消遣，它是武器，让我开山劈路的……因为在车间，我真的不知道我是在创造价值还是制造垃圾，所以我那时候是每天都得写，哪怕写的不好，我要是一天没写觉得自己白活了。"
+                    </p>
+                    <p class="voice-source">—— <strong>小海</strong>，新工人诗人</p>
+                </div>
+
+                <div class="voice-item">
+                    <p class="voice-quote">
+                        "我穿过昨夜的城市，吐出那枚铁做的月亮……献给失业了半个月的四川小王、河南老李，献给因为工伤骨折的会拉二胡的安徽木匠刘师傅，献给工资税减后交不起房贷车贷年轻的打工人，献给一无所有一事无成的像我们这样的大龄失败者。"
+                    </p>
+                    <p class="voice-source">—— <strong>许多</strong>，谷仓乐队，《返乡青年》歌词</p>
+                </div>
+
+                <div class="voice-item">
+                    <p class="voice-quote">
+                        "露天电影往那一拉，大家就都出门了。孩子们在一起可以玩，大人可以陪着。那样才是真正的生活，鲜活的生活，有尊严的生活。"
+                    </p>
+                    <p class="voice-source">—— <strong>沈金花</strong>，同心学校校长</p>
+                </div>
+
+                <div class="voice-item">
+                    <p class="voice-quote">
+                        "我抱着沉车，就想到当年尼采抱着都灵之马那样，想哭。"
+                    </p>
+                    <p class="voice-source">—— <strong>小海</strong>，三轮车坠江后</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact / Footer -->
+    <div class="contact-section" id="contact">
+        <h2>联系</h2>
+        <p>如有合作意向或观影需求，欢迎邮件联系</p>
+        <p class="email">elyk@foxmail.com</p>
+        <p style="margin-top: 32px; font-size: 0.8rem; opacity: 0.5;">
+            (+86) 153-9777-1680
+        </p>
+    </div>
+
+    <div class="footer-bottom">
+        <p> 李源凯 · 影视人类学作品集</p>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.note-block, .voice-item, .project-index-card').forEach(el => {
+            el.classList.add('fade-in');
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>
