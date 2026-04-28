@@ -19,6 +19,7 @@
             --font-sans: 'Noto Sans SC', 'PingFang SC', sans-serif;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; }
         body {
             font-family: var(--font-sans);
             background: var(--bg-primary);
@@ -117,6 +118,81 @@
             color: var(--accent);
             margin-bottom: 40px;
         }
+
+        /* 项目编号侧边竖排索引 */
+        .side-index {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            z-index: 10;
+            pointer-events: none;
+            user-select: none;
+        }
+        .side-index .si-number {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+            letter-spacing: 0.05em;
+        }
+        .side-index .si-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            opacity: 0.5;
+        }
+        .side-index .si-label {
+            writing-mode: vertical-rl;
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .side-index .si-label-cn {
+            writing-mode: vertical-rl;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: #888;
+            margin-top: 4px;
+        }
+        .work-card {
+            background-color: #f5f0e8 !important;
+            border: 1px solid rgba(139,115,85,0.45) !important;
+            padding: 35px 25px;
+            color: #1a1a1a !important;
+            -webkit-font-smoothing: antialiased;
+        }
+        .work-card h3 { color: #1a1a1a; }
+        .work-role {
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .work-awards {
+            font-size: 0.85rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .work-awards p { margin-bottom: 6px; }
+        .work-awards span {
+            color: #666;
+            font-size: 0.75rem;
+        }
+        .work-link {
+            font-size: 0.75rem;
+            color: #555;
+            text-decoration: none;
+            border-bottom: 1px solid #bbb;
+            padding-bottom: 2px;
+        }
         .cover-scroll {
             position: absolute;
             bottom: 40px;
@@ -135,6 +211,7 @@
             padding: 120px 60px;
             max-width: 1400px;
             margin: 0 auto;
+            overflow-x: hidden;
         }
         .cv-label {
             font-size: 0.7rem;
@@ -288,6 +365,8 @@
             padding: 140px 60px 80px;
         }
         .opening-text {
+            position: relative;
+            z-index: 1;
             max-width: 700px;
             margin: 0 auto 60px;
         }
@@ -303,6 +382,8 @@
             font-style: italic;
         }
         .project-info-bar {
+            position: relative;
+            z-index: 1;
             display: flex;
             justify-content: center;
             gap: 60px;
@@ -313,6 +394,8 @@
             flex-wrap: wrap;
         }
         .film-intro {
+            position: relative;
+            z-index: 1;
             max-width: 700px;
             margin: 0 auto 80px;
             text-align: center;
@@ -340,8 +423,19 @@
             color: #c9b896;
             font-style: italic;
             margin-top: 30px;
-            padding: 20px;
-            border-left: 2px solid var(--accent);
+            padding: 20px 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        .film-intro .quote::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            margin: 20px auto 0;
+            transform: rotate(45deg);
+            opacity: 0.6;
         }
         .video-section {
             padding: 0 60px 80px;
@@ -505,6 +599,8 @@
             padding: 140px 60px 80px;
         }
         .quant-bar {
+            position: relative;
+            z-index: 1;
             display: flex;
             justify-content: center;
             gap: 50px;
@@ -1075,15 +1171,12 @@
         .grid-4-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; max-width: 1300px; margin: 0 auto; }
         .yuyu-video-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: start; }
 
-        .voice-slider { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 0 20px; }
+        .voice-slider { display: flex; gap: 3px; overflow-x: auto; scrollbar-width: none; padding: 0; }
         .voice-slider::-webkit-scrollbar { display: none; }
-        .voice-slide { flex: 0 0 85%; max-width: 600px; min-height: 220px; scroll-snap-align: start; background: rgba(255,255,255,0.03); border-left: 3px solid var(--accent); padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
-        .voice-slide p { font-size: 1rem; line-height: 1.9; color: #ddd; font-style: italic; margin-bottom: 15px; }
+        .voice-slide { flex: 0 0 auto; width: auto; min-width: 400px; max-width: 480px; min-height: 320px; background: rgba(255,255,255,0.03); border-right: 1px solid rgba(139,115,85,0.12); padding: 40px 35px; display: flex; flex-direction: column; justify-content: space-between; }
+        .voice-slide p { font-size: 0.95rem; line-height: 1.9; color: #ddd; font-style: italic; margin-bottom: 15px; }
         .voice-source { font-size: 0.8rem; color: #666; letter-spacing: 0.05em; margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(139,115,85,0.2); }
-        .voice-dots { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-        .voice-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; cursor: pointer; transition: background 0.3s; }
-        .voice-dot.active { background: var(--accent); }
-        .exp-slider { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 0 20px; }
+        .exp-slider { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 0 20px; max-width: 100%; }
         .exp-slider::-webkit-scrollbar { display: none; }
         .exp-card { flex: 0 0 85%; max-width: 520px; scroll-snap-align: start; background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 35px; display: flex; flex-direction: column; }
         .exp-card-year { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 12px; font-weight: 500; }
@@ -1093,9 +1186,10 @@
         .exp-dots { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
         .exp-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; cursor: pointer; transition: background 0.3s; }
         .exp-dot.active { background: var(--accent); }
-        .cv-layout { display: grid; grid-template-columns: 320px 1fr; gap: 80px; align-items: start; max-width: 1400px; margin: 0 auto; }
+        .cv-layout { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 80px; align-items: start; max-width: 1400px; margin: 0 auto; min-width: 0; }
         .cv-photo { position: sticky; top: 120px; }
         .cv-photo img { width: 100%; height: 420px; object-fit: cover; filter: grayscale(30%); display: block; }
+        .cv-text { word-wrap: break-word; overflow-wrap: break-word; word-break: keep-all; }
 
         @media (max-width: 768px) {
             nav { padding: 20px 30px; }
@@ -1141,9 +1235,12 @@
                 flex-direction: column;
             }
             .grid-2, .grid-3, .grid-3-narrow, .grid-4, .grid-4-wrap { grid-template-columns: 1fr !important; gap: 20px; }
-            .cv-layout { grid-template-columns: 1fr !important; gap: 40px; }
-            .cv-photo { position: relative; top: 0; }
-            .cv-photo img { height: 300px; }
+            .cv-layout { display: flex; flex-direction: column; width: 100%; max-width: 100%; }
+            .cv-photo { position: relative; top: 0; width: 100%; max-width: 100%; }
+            .cv-photo img { width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+            .cv-text { font-size: 0.95rem; line-height: 1.9; word-wrap: break-word; overflow-wrap: break-word; word-break: keep-all; }
+            .exp-slider { display: flex; flex-direction: row; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 0 15px; -webkit-overflow-scrolling: touch; }
+            .exp-card { flex: 0 0 85%; max-width: 340px; scroll-snap-align: start; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 25px 22px; }
             .image-overlay { padding: 25px 15px 15px; }
             .image-desc { font-size: 0.85rem; }
             .image-tag { font-size: 0.7rem; }
@@ -1162,20 +1259,22 @@
             .nav-links { gap: 20px; }
             .nav-links a { font-size: 0.7rem; letter-spacing: 0.1em; }
             .yuyu-video-layout { grid-template-columns: 1fr !important; }
+            .side-index { right: 15px; gap: 8px; }
+            .side-index .si-number { font-size: 1.4rem; }
+            .side-index .si-line { height: 25px; }
+            .side-index .si-label { font-size: 0.5rem; letter-spacing: 0.15em; }
             .yuyu-video-layout { grid-template-columns: 1fr !important; }
 
-            .voice-slide { flex: 0 0 90%; padding: 20px; min-height: 180px; }
+            .voice-slide { flex: 0 0 auto; width: 85vw; min-width: 300px; height: auto; min-height: 280px; padding: 25px 20px; }
             .voice-slider { gap: 15px; }
-            .exp-card { flex: 0 0 90%; padding: 25px; }
-            .exp-card-desc { font-size: 0.85rem; }
-            .exp-slider { gap: 15px; }
+            .exp-card-desc { font-size: 0.85rem; color: #555; line-height: 1.7; }
             .image-item img[style*="height"] { height: auto !important; min-height: 220px; }
             .yy-item { width: 80vw; }
             .h-gallery-item { width: 80vw; }
             .horizontal-gallery { height: 55vh; min-height: 420px; }
             .episode-card { padding: 30px 20px; }
             .project-card { padding: 30px 20px; }
-            .cv-section { padding: 60px 30px; }
+            .cv-section { padding: 60px 16px; overflow-x: hidden; }
             .field-notes { padding: 60px 30px; }
             .audio-archive { padding: 60px 30px; }
             .project1-hero, .project2-hero, .project5-hero { padding: 100px 30px 60px; }
@@ -1193,8 +1292,16 @@
             .project-info-bar {
                 gap: 20px;
             }
+            .work-card { background-color: #f5f0e8 !important; border: 1px solid rgba(139,115,85,0.45) !important; padding: 30px 20px; text-align: left; color: #1a1a1a !important; }
+            .work-card h3 { color: #111 !important; text-align: left; }
+            .work-card p, .work-role, .work-awards, .work-awards p, .work-link { text-align: left !important; }
+            .work-role { color: #333 !important; }
+            .work-awards { color: #222 !important; }
+            .work-awards span { color: #444 !important; }
+            .work-link { color: #333 !important; border-bottom-color: #888 !important; }
         }
     </style>
+<base target="_blank">
 <base target="_blank">
 </head>
 <body>
@@ -1225,16 +1332,20 @@
         <div>
             <p class="cv-label">关于</p>
             <p class="cv-text">
-                李源凯，中共党员，生于广东潮州，长于四川绵阳。天津师范大学播音与主持艺术、世界史双学位，<span class="cv-highlight">中央民族大学影视人类学硕士</span>在读。
+                李源凯，中共党员，2002年生于广东潮州，后成长于四川绵阳。<br>
+                天津师范大学播音与主持艺术、世界史双学位，<span class="cv-highlight">中央民族大学影视人类学硕士</span>在读。
             </p>
             <p class="cv-text">
-                曾获国家奖学金、王克昌奖学金、市级优秀学生、天津市高校资助育人宣传大使称号。本科阶段连续四年专业成绩与综合测评全系第一，累计志愿时长1179小时。
+                曾获国家奖学金、王克昌奖学金、市级优秀学生、天津市高校资助育人宣传大使称号。<br>
+                本科阶段连续四年专业成绩与综合测评全系第一，累计志愿时长1179小时。
             </p>
             <p class="cv-text">
-                持有CET-6、播音员主持人资格证A级、教师资格证（中学语文/中职播音）、中国音乐学院社会艺术水平朗诵十级、钢琴十级、美声十级、国标舞十二级等证书。
+                持有CET-6、播音员主持人资格证A级、教师资格证（中学语文/中职播音）。<br>
+                中国音乐学院社会艺术水平（朗诵 10 级、钢琴 10 级、美声 10 级）、青年艺术水平等级（国标舞 12 级）等证书。
             </p>
             <p class="cv-text">
-                田野足迹遍及甘孜藏区、贵州黔东南、北京皮村、大凉山彝区、青海同仁等地，以影像为方法探索文化深度与人性温度。所作影片先后获得亚洲国际青年电影节最佳纪录短片提名、美国Global Film Exhibition最佳纪录长片、中国纪录片学院奖入围、西湖青年纪录片放映周最佳短纪录片等荣誉。
+                田野足迹遍及甘孜藏区、贵州黔东南、北京皮村、大凉山彝区、青海同仁等地，以影像为方法探索文化深度与人性温<wbr>度。
+                <br>所作影片先后获得亚洲国际青年电影节最佳纪录短片提名、美国Global Film Exhibition最佳纪录长片、中国纪录片学院奖入围、西湖青年纪录片放映周最佳短纪录片等荣誉。
             </p>
 
             <p class="cv-label" style="margin-top: 50px;">实践经历</p>
@@ -1319,7 +1430,7 @@
             <div class="project-card-number">03</div>
             <h3 class="project-card-title">行动在凉山</h3>
             <p class="project-card-location">大凉山昭觉 · 玛薇社工服务中心</p>
-            <p class="project-card-desc">协助搜集困境儿童与非遗传承人信息，设置影像行动点位，组织彝族中学生拍摄家乡文化。</p>
+            <p class="project-card-desc">协助搜集困境<wbr>儿童与非遗传承<wbr>人信息，设置影像行动点位，组织彝族<wbr>中学生拍摄家乡文化。</p>
             <span class="project-focus">NGO社工服务 · 行动人类学</span>
         </div>
 
@@ -1348,7 +1459,13 @@
 </section>
 
 <section id="project1" class="project-section">
-    <div class="project1-hero">
+    <div class="project1-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project1.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">01</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
         <div class="opening-text">
         </div>
         <div class="project-info-bar">
@@ -1364,10 +1481,10 @@
                 2025年6月，北京皮村新工人文学小组将面临他们的第二次搬迁。影片以这场熟悉而紧迫的空间危机为线索，从杏树追忆、下河捞车、侧街找房等场景中记录小组成员们历时半年的自我建构。
             </p>
             <p>
-                影片同时着眼时代变迁下"新工人"定义边界的扩张——它不再仅仅指向传统的农村户籍进城务工者，还包含如今那些失去原有社会位置、于城市边缘重新定位身份的人们。
+                影片同时着眼时代变迁下"新工人"定义边界的扩张——<br>它不再仅仅指向传统的农村户籍进城务工<wbr>者，还包含如今那些失去原有社会<wbr>位置、于城市边缘重新定位身份的人们。
             </p>
             <p class="quote">
-                "我们是矿工、家政工、泥瓦匠、育儿嫂、机械工人……也是用汗水、用厄运、用顽强、用永不低头的力量书写诗歌的人。"
+                "我们是矿工、家政工、泥瓦匠、育儿嫂、机械工人……<br>也是用汗水、用厄运、用顽强、用永不低头的力量书写诗歌的人。"
             </p>
         </div>
     </div>
@@ -1376,13 +1493,13 @@
         <div class="video-container">
             <div>
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1Jyo1BuE7s&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1Jyo1BuE7s&page=1&autoplay=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <p class="video-caption">预告片 · 《相聚在皮村》文学小组十周年之歌</p>
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116477365585642&bvid=BV1J1o1BBEEk&cid=37886363893&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116477365585642&bvid=BV1J1o1BBEEk&cid=37886363893&p=1&autoplay=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <p class="video-caption">杏树下 · 我们的十年追忆活动</p>
             </div>
@@ -1470,8 +1587,8 @@
     </div>
 
     <div class="audio-archive" style="padding: 60px 0 80px;">
-        <div class="audio-container" style="padding: 0 60px;">
-            <div class="audio-intro">
+        <div class="audio-container" style="padding: 0;">
+            <div class="audio-intro" style="padding: 0 60px;">
                 <p class="section-label">声音档案</p>
                 <h2 class="section-title">田野中的声音</h2>
                 <p>
@@ -1497,16 +1614,30 @@
                 </div>
                 <div class="voice-slide">
                     <p>"活着就要做点和吃饭无关的事，满足一下自己的精神欲望。一本书读完可能很快就忘干净了，好比竹篮打水一场空，但是竹篮经过一次次水的洗礼，会一次比一次干净。"</p>
-                    <p class="voice-source">—— 范雨素，家政工</p>
+                    <p class="voice-source">—— 范雨素，家政工，中国作家协会会员</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"这个博物馆是我工作了15年的地方。我从一个17岁的小姑娘不满18岁来到了皮村，然后在这个地方工作，认识了我老公，生了俩孩子，一直到现在32岁。这个博物馆和这个机构，给了我很多很多很多的回忆。"</p>
+                    <p class="voice-source">—— 小付，文学小组召集人</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"普法战争时期，德国占领法国一个地方，都德写了《最后一课》。如果咱们也叫'最后一课'，就感觉到有点太悲情了。所以还是回到鲁迅，讲1936年，母亲去世前的一夜。"</p>
+                    <p class="voice-source">—— 张慧瑜，北京大学研究员，文学小组志愿讲师</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"一个月休息两天……上周六是吴老师最后一次课了……我忘了打伞了，下了班换了衣服赶快就走……雨越下越大，我就跑起来一直跑一直跑……傅老师看见我进来了，赶快让我坐在那块，又回来给我拿了纸巾，让我擦脸上的雨水。"</p>
+                    <p class="voice-source">—— 王宽芳，清洁工，文学小组成员</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"我没苦难啊。我的苦难，我都推到别人身上去了嘛。我刚去参加了一个腾讯组织的脱口秀节目，为什么我去参加那个脱口秀？也就是打破这些人对家政工的刻板印象。"</p>
+                    <p class="voice-source">—— 施洪丽，家政工，文学小组成员</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"家政工作是我们的一种职业，但是它不是我们的生活，我们也应该有我们自己的生活。我们的出外学习、沟通、个人社交，我们应该也有跟这个世界、跟这个社会沟通接触的机会。"</p>
+                    <p class="voice-source">—— 阿蔚，家政工，漫画家，文学小组成员</p>
                 </div>
             </div>
-            <div class="voice-dots" id="voiceDots">
-                <span class="voice-dot active" onclick="goToVoice(0)"></span>
-                <span class="voice-dot" onclick="goToVoice(1)"></span>
-                <span class="voice-dot" onclick="goToVoice(2)"></span>
-                <span class="voice-dot" onclick="goToVoice(3)"></span>
-                <span class="voice-dot" onclick="goToVoice(4)"></span>
-            </div>
+
         </div>
     </div>
 </section>
@@ -1514,7 +1645,13 @@
 <div class="project-divider"></div>
 
 <section id="project2" class="project-section">
-    <div class="project2-hero">
+    <div class="project2-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project2.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">02</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
         <div class="opening-text">
         </div>
         <div class="project-info-bar">
@@ -1717,7 +1854,13 @@
 
 <section id="project3" class="project-section">
 
-    <div class="project1-hero">
+    <div class="project1-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project3.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">03</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
         <div class="opening-text">
         </div>
         <div class="project-info-bar">
@@ -1730,7 +1873,7 @@
             <h3>行动在凉山</h3>
             <p class="en-title">Empowerment in Liangshan</p>
             <p>
-                协助玛薇社工发展中心搜集困境儿童与非遗传承人信息，设置社区影像行动点位，组织彝族中学生拍摄家乡文化，探索从"协助"到"赋权"的行动人类学路径。
+                协助玛薇社工发展中心搜集困境<wbr>儿童与非遗传承<wbr>人信息，设置社区影像行动点位，组织彝族<wbr>中学生拍摄家乡文化，探索从"协助"到"赋权"的行动人类学路径。
             </p>
             <p>
                 影像赋权不是施舍镜头，而是把观看的权力交还给被观看的人。当彝族中学生开始记录自己的毕摩、自己的花海、自己的苦荞收割，人类学才真正从"关于他们的知识"变成"他们自己的知识"。
@@ -1922,7 +2065,13 @@
 <div class="project-divider"></div>
 
 <section id="project4" class="project-section">
-    <div class="project1-hero">
+    <div class="project1-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project4.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">04</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
         <div class="opening-text">
         </div>
         <div class="project-info-bar">
@@ -1938,7 +2087,7 @@
                 鱼市摊主，时装店主，文化博主，几个迥异的身份标签共同拼贴出当下中国县域中产者的典型面貌。镜头追随来自大理南涧的90后女性谷海萍，记录了她在时代浪潮中捕捉每一个机会的故事。
             </p>
             <p>
-                她以惊人的自我剥削，在"债务-投资"的循环中不停奔跑，试图将携有鱼腥味的经济资本，兑换成抖音账号里的文化资本与企业家网络中的社会资本。而这些碎片化的场景并非关于"逆袭"的神话，而是关于中产者"悬浮"状态下具体的生存策略。
+                她以惊人的自我剥削，在"债务-投资"的循环中不停奔跑，试图将携有鱼腥味的经济资本，兑换成抖音账号里的文化<wbr>资本与企业家网络中的社会资本。而这些碎片化的场景并非关于"逆袭"的神话，而是关于中产者"悬浮"状态下具体的生存策略。
             </p>
             <p class="quote">
                 在人口流失与产业转型的宏大叙事下，个体所有的努力，往往并非为了攀升，而只是为了维系一种"不下滑"的脆弱平衡。
@@ -1953,7 +2102,7 @@
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116478321952354&bvid=BV1gkoyBQEjD&cid=37892458535&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116478321952354&bvid=BV1gkoyBQEjD&cid=37892458535&p=1&autoplay=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <p class="video-caption">片花 · Year after Year</p>
             </div>
@@ -1997,7 +2146,7 @@
             <h2 class="section-title">影像作为方法</h2>
         </div>
         <div style="max-width: 900px; margin: 0 auto 40px; text-align: center;">
-            <a href="https://www.douyin.com/jingxuan/search/%E5%8D%97%E6%B6%A7%E5%8E%BF%E7%BE%8E%E5%A5%BD%E6%8E%A8%E8%8D%90%E7%AE%A1?aid=69b1f7e6-4271-4d28-a770-f7ee61e858e4&modal_id=7540996731493207354&type=general" target="_blank" style="text-decoration: none; display: inline-block;">
+            <a href="https://v.douyin.com/ZCETiAQYUrQ/" target="_blank" style="text-decoration: none; display: inline-block;">
                 <div style="display: inline-flex; align-items: center; gap: 12px; background: rgba(139,115,85,0.08); border: 1px solid var(--border); border-radius: 50px; padding: 14px 32px; transition: all 0.3s;">
                     <span style="font-size: 1rem;">▶</span>
                     <span style="font-size: 0.85rem; color: #555; letter-spacing: 0.05em;">小谷抖音视频 · 南涧县美好推荐官 · 600+赞</span>
@@ -2010,28 +2159,28 @@
         </div>
         <div class="image-grid grid-4">
             <div class="image-item">
-                <img src="./yuyu-wedding1.jpg" alt="老人婚礼1" style="height: 280px;">
+                <img src="./yuyu-wedding1.jpg" alt="老人婚礼1" style="width: 100%; height: auto; display: block;">
                 <div class="image-overlay" style="padding: 30px 15px 15px;">
                     <p class="image-tag">瓦折村 · 群山</p>
                     <p class="image-desc" style="font-size: 0.8rem;">下村路，租婚服，太阳落山前</p>
                 </div>
             </div>
             <div class="image-item">
-                <img src="./yuyu-wedding2.jpg" alt="老人婚礼2" style="height: 280px;">
+                <img src="./yuyu-wedding2.jpg" alt="老人婚礼2" style="width: 100%; height: auto; display: block;">
                 <div class="image-overlay" style="padding: 30px 15px 15px;">
                     <p class="image-tag">婚服 · 四十年</p>
                     <p class="image-desc" style="font-size: 0.8rem;">领证后从未办过婚礼</p>
                 </div>
             </div>
             <div class="image-item">
-                <img src="./yuyu-wedding3.jpg" alt="老人婚礼3" style="height: 280px;">
+                <img src="./yuyu-wedding3.jpg" alt="老人婚礼3" style="width: 100%; height: auto; display: block;">
                 <div class="image-overlay" style="padding: 30px 15px 15px;">
                     <p class="image-tag">快门 · 遗憾</p>
                     <p class="image-desc" style="font-size: 0.8rem;">寥寥几次快门</p>
                 </div>
             </div>
             <div class="image-item">
-                <img src="./yuyu-wedding4.jpg" alt="老人婚礼4" style="height: 280px;">
+                <img src="./yuyu-wedding4.jpg" alt="老人婚礼4" style="width: 100%; height: auto; display: block;">
                 <div class="image-overlay" style="padding: 30px 15px 15px;">
                     <p class="image-tag">补齐 · 圆满</p>
                     <p class="image-desc" style="font-size: 0.8rem;">一件四十年的遗憾</p>
@@ -2046,7 +2195,13 @@
 <div class="project-divider"></div>
 
 <section id="project5" class="project-section">
-    <div class="project5-hero">
+    <div class="project5-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project5.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">05</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
         <div class="opening-text">
         </div>
         <div class="project-info-bar">
@@ -2133,62 +2288,63 @@
 <div class="project-divider"></div>
 
 <section id="project6" class="project-section">
-    <div style="background: var(--bg-dark); color: var(--text-light); padding: 100px 60px 50px; text-align: center;">
-        <p style="font-size: 0.7rem; letter-spacing: 0.3em; color: #666; margin-bottom: 20px;">更多作品 · MORE WORKS</p>
+    <div style="background-image: url('./bg-project6.jpg'); background-size: cover; background-position: center center; color: var(--text-light); padding: 100px 60px 50px; text-align: center; position: relative; overflow: hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index" style="right: 25px;">
+            <div class="si-number">06</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
+        <div style="position:relative; z-index:1;">
+            <p style="font-size: 0.7rem; letter-spacing: 0.3em; color: #666; margin-bottom: 20px;">更多作品 · MORE WORKS</p>
         <h2 style="font-family: var(--font-serif); font-size: 2.2rem; font-weight: 400; margin-bottom: 12px;">视野的多面性</h2>
         <p style="font-size: 0.85rem; color: #888; max-width: 600px; margin: 0 auto 8px; font-style: italic;">Multi-faceted Perspectives</p>
         <p style="font-size: 0.9rem; color: #888; max-width: 600px; margin: 0 auto;">从民族影像到实验纪录，从田野合作到跨界实践</p>
     </div>
 
     <div style="padding: 60px; background: var(--bg-dark);">
-        <div class="grid-4-wrap">
-
-            <div style="background: white; border: 1px solid var(--border); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.borderColor='#8b7355';this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='#e0ddd5';this.style.transform='translateY(0)';">
+        <div class="grid-4-wrap works-grid">
+            <div class="work-card">
                 <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2022 · 西藏日喀则南木林</p>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">扎旺与普尺</h3>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">导演助理 · 旁白配音</p>
-                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> 入围第三届民族影视与影视人类学作品展</p>
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 2023年亚洲研究协会AAS Film Expo影展</p>
-                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 美国波士顿亚洲研究协会年会展映</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;">扎旺与普尺</h3>
+                <p class="work-role">导演助理 · 旁白配音</p>
+                <div class="work-awards">
+                    <p><span>01</span> 入围第三届民族影视与影视人类学作品展</p>
+                    <p><span>02</span> 2023年亚洲研究协会AAS Film Expo影展</p>
+                    <p><span>03</span> 美国波士顿亚洲研究协会年会展映</p>
                 </div>
-                <a href="https://news.cctv.com/2024/03/01/VIDE6IFWw1l3YS8FIc7UK7Kw240301.shtml" target="_blank" style="font-size: 0.75rem; color: #666; text-decoration: none; border-bottom: 1px solid #ccc; padding-bottom: 2px;">西藏新闻联播播出 →</a>
+                <a href="https://news.cctv.com/2024/03/01/VIDE6IFWw1l3YS8FIc7UK7Kw240301.shtml" target="_blank" class="work-link">西藏新闻联播播出 →</a>
             </div>
-
-            <div style="background: white; border: 1px solid var(--border); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.borderColor='#8b7355';this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='#e0ddd5';this.style.transform='translateY(0)';">
-                <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2023·安徽庐江</p>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">我去了外星球</h3>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">副导演</p>
-                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> 入围第十三届中国纪录片学院奖</p>
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 理想国艺术电影节</p>
-                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 美国Global Film Exhibition最佳纪录长片</p>
+            <div class="work-card">
+                <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2023 · 安徽庐江</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;">我去了外星球</h3>
+                <p class="work-role">副导演</p>
+                <div class="work-awards">
+                    <p><span>01</span> 入围第十三届中国纪录片学院奖</p>
+                    <p><span>02</span> 理想国艺术电影节</p>
+                    <p><span>03</span> 美国Global Film Exhibition最佳纪录长片</p>
                 </div>
             </div>
-
-            <div style="background: white; border: 1px solid var(--border); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.borderColor='#8b7355';this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='#e0ddd5';this.style.transform='translateY(0)';">
+            <div class="work-card">
                 <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2025 · 青海同仁</p>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">热贡六月生万物</h3>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">后期制作 · 旁白配音</p>
-                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> "青年服务国家"首都大学生暑期社会实践市级先进团队</p>
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 中央民族大学优秀视频作品</p>
-                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 中央民族大学优秀调研报告</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;">热贡六月生万物</h3>
+                <p class="work-role">后期制作 · 旁白配音</p>
+                <div class="work-awards">
+                    <p><span>01</span> "青年服务国家"首都大学生暑期社会实践市级先进团队</p>
+                    <p><span>02</span> 中央民族大学优秀视频作品</p>
+                    <p><span>03</span> 中央民族大学优秀调研报告</p>
                 </div>
             </div>
-
-            <div style="background: white; border: 1px solid var(--border); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.borderColor='#8b7355';this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='#e0ddd5';this.style.transform='translateY(0)';">
+            <div class="work-card">
                 <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">跨界合作 · 清华美院陶瓷系</p>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">物质文化实践</h3>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">三次项目合作</p>
-                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
-                    <p style="margin-bottom: 8px;"><span style="color: #888; font-size: 0.75rem;">01</span> 宜兴紫砂——教育部语言司多语种中华传统文化宣传视频</p>
-                    <p style="margin-bottom: 8px;"><span style="color: #888; font-size: 0.75rem;">02</span> 克拉玛依紫砂展览</p>
-                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 2026年6月清华艺博中国现代民间陶瓷艺术展傣陶板块纪录片及展品图样拍摄（北京文化艺术基金支持的纵向课题）</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;">物质文化实践</h3>
+                <p class="work-role">三次项目合作</p>
+                <div class="work-awards">
+                    <p><span>01</span> 宜兴紫砂——教育部语言司多语种中华传统文化宣传视频</p>
+                    <p><span>02</span> 克拉玛依紫砂展览</p>
+                    <p><span>03</span> 2026年6月清华艺博中国现代民间陶瓷艺术展傣陶板块纪录片及展品图样拍摄（北京文化艺术基金支持的纵向课题）</p>
                 </div>
-
             </div>
-
         </div>
     </div>
 
@@ -2199,6 +2355,8 @@
             </p>
         </div>
     </div>
+
+</div>
 </section>
 
 <section class="footer" id="footer">
@@ -2216,21 +2374,8 @@
 <script>
     // Voice slider
     const voiceSlider = document.getElementById('voiceSlider');
-    const voiceDots = document.querySelectorAll('.voice-dot');
-    function goToVoice(index) {
-        const slides = voiceSlider.querySelectorAll('.voice-slide');
-        if (slides[index]) slides[index].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-    }
     if (voiceSlider) {
-        voiceSlider.addEventListener('scroll', () => {
-            const slides = voiceSlider.querySelectorAll('.voice-slide');
-            let closest = 0, minDist = Infinity;
-            slides.forEach((slide, i) => {
-                const dist = Math.abs(slide.getBoundingClientRect().left - voiceSlider.getBoundingClientRect().left);
-                if (dist < minDist) { minDist = dist; closest = i; }
-            });
-            voiceDots.forEach((dot, i) => dot.classList.toggle('active', i === closest));
-        });
+        // free scroll, no snap
     }
 
     // Exp slider
@@ -2291,10 +2436,4 @@
             if (slideWidth > 0) {
                 const index = Math.round(scrollLeft / slideWidth);
                 dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-            }
-        });
-    }
-</script>
-
-</body>
-</html>
+        
