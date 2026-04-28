@@ -36,11 +36,17 @@
             justify-content: space-between;
             align-items: center;
             transition: all 0.4s ease;
+            background: rgba(30, 30, 30, 0.35);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
         nav.scrolled {
-            background: rgba(247,245,240,0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(247,245,240,0.92);
+            backdrop-filter: blur(16px) saturate(1.2);
+            -webkit-backdrop-filter: blur(16px) saturate(1.2);
             box-shadow: 0 1px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
         }
         nav.scrolled .nav-name,
         nav.scrolled .nav-links a {
@@ -1136,7 +1142,7 @@
         .footer {
             background: var(--bg-dark);
             color: var(--text-light);
-            padding: 100px 60px 60px;
+            padding: 70px 60px 45px;
             text-align: center;
         }
         .footer-content {
@@ -1147,13 +1153,13 @@
             font-family: var(--font-serif);
             font-size: 2rem;
             font-weight: 400;
-            margin-bottom: 30px;
+            margin-bottom: 18px;
         }
         .footer-contact {
             font-size: 0.9rem;
             color: #888;
-            line-height: 2;
-            margin-bottom: 40px;
+            line-height: 1.9;
+            margin-bottom: 28px;
         }
         .footer-contact a {
             color: var(--accent);
@@ -1170,6 +1176,49 @@
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
         .grid-4-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; max-width: 1300px; margin: 0 auto; }
         .yuyu-video-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: start; }
+
+        /* 滑块导航按钮 */
+        .slider-wrap { position: relative; }
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(139,115,85,0.25);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(139,115,85,0.4);
+            color: #c9b896;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .slider-nav:hover {
+            background: rgba(139,115,85,0.45);
+            border-color: rgba(139,115,85,0.7);
+        }
+        .slider-nav.disabled {
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .slider-nav.prev { left: 12px; }
+        .slider-nav.next { right: 12px; }
+        .slider-nav svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
 
         .voice-slider { display: flex; gap: 3px; overflow-x: auto; scrollbar-width: none; padding: 0; }
         .voice-slider::-webkit-scrollbar { display: none; }
@@ -1267,6 +1316,7 @@
 
             .voice-slide { flex: 0 0 auto; width: 85vw; min-width: 300px; height: auto; min-height: 280px; padding: 25px 20px; }
             .voice-slider { gap: 15px; }
+            .slider-nav { display: none !important; }
             .exp-card-desc { font-size: 0.85rem; color: #555; line-height: 1.7; }
             .image-item img[style*="height"] { height: auto !important; min-height: 220px; }
             .yy-item { width: 80vw; }
@@ -1281,8 +1331,9 @@
             .opening-text p { font-size: 0.95rem; }
             .film-intro h3 { font-size: 1.6rem; }
             .cover-title { font-size: 0.85rem; letter-spacing: 0.2em; }
-            .footer { padding: 60px 30px 40px; }
-            .footer-name { font-size: 1.5rem; }
+            .footer { padding: 50px 30px 35px; }
+            .footer-name { font-size: 1.5rem; margin-bottom: 14px; }
+            .footer-contact { margin-bottom: 22px; }
             .projects-nav { padding: 60px 30px; }
             .projects-nav-header { margin-bottom: 40px; }
             .section-title { font-size: 1.4rem; }
@@ -1314,10 +1365,15 @@
         #cv, #cv * {
             max-width: 100%;
         }
-        #project6 .project6-works,
+        #project6 .project6-works .work-card,
         #project6 .project6-reflection {
-            background: var(--bg-primary) !important;
             color: var(--text-primary) !important;
+        }
+        #project6 .project6-works .work-card {
+            background: rgba(245, 240, 232, 0.97) !important;
+        }
+        #project6 .project6-reflection p {
+            color: #bbb !important;
         }
         #project6 .work-card {
             background: #fff !important;
@@ -1374,20 +1430,20 @@
                 overflow-wrap: anywhere;
             }
             .exp-slider {
-                display: grid !important;
-                grid-template-columns: 1fr !important;
-                gap: 16px !important;
-                overflow-x: visible !important;
-                scroll-snap-type: none !important;
-                padding: 0 !important;
+                display: flex !important;
+                flex-direction: row !important;
+                gap: 12px !important;
+                overflow-x: auto !important;
+                scroll-snap-type: x mandatory !important;
+                padding: 0 0 15px !important;
                 width: 100%;
+                -webkit-overflow-scrolling: touch;
             }
             .exp-card {
-                width: 100% !important;
-                max-width: none !important;
-                min-width: 0 !important;
-                flex: none !important;
-                scroll-snap-align: none !important;
+                flex: 0 0 85% !important;
+                max-width: 320px !important;
+                min-width: 280px !important;
+                scroll-snap-align: start !important;
                 background: #fff !important;
                 border: 1px solid var(--border) !important;
                 color: var(--text-primary) !important;
@@ -1395,9 +1451,12 @@
             }
             .exp-card-desc {
                 color: #555 !important;
+                font-size: 0.85rem;
+                line-height: 1.7;
             }
             .exp-dots {
-                display: none !important;
+                display: flex !important;
+                margin-top: 5px;
             }
             #project6 > div:first-child {
                 padding: 80px 20px 40px !important;
@@ -1415,7 +1474,7 @@
 <body>
 
 <nav id="navbar">
-    <div class="nav-name">李源凯</div>
+    <div class="nav-name">李源凯 <span style="font-size: 0.85em; opacity: 0.7; margin-left: 6px; font-family: var(--font-sans); letter-spacing: 0.05em;">Kyle</span></div>
     <div class="nav-links">
         <a href="#cv">履历</a>
         <a href="#projects">项目</a>
@@ -1452,8 +1511,7 @@
                 中国音乐学院社会艺术水平（朗诵 10 级、钢琴 10 级、美声 10 级）、青年艺术水平等级（国标舞 12 级）等证书。
             </p>
             <p class="cv-text">
-                田野足迹遍及甘孜藏区、贵州黔东南、北京皮村、大凉山彝区、青海同仁等地，以影像为方法探索文化深度与人性温<wbr>度。
-                <br>所作影片先后获得亚洲国际青年电影节最佳纪录短片提名、美国Global Film Exhibition最佳纪录长片、中国纪录片学院奖入围、西湖青年纪录片放映周最佳短纪录片等荣誉。
+                田野足迹遍及甘孜藏区、贵州黔东南、北京皮村、大凉山彝区、青海同仁等地，以影像为方法探索文化深度与人性温度。所作影片先后获得亚洲国际青年电影节最佳纪录短片提名、美国Global Film Exhibition最佳纪录长片、中国纪录片学院奖入围、西湖青年纪录片放映周最佳短纪录片等荣誉。
             </p>
 
             <p class="cv-label" style="margin-top: 50px;">实践经历</p>
@@ -1703,47 +1761,55 @@
                     以下声音来自我的田野录音与阅读。我记录了他们，他们也在某种程度上重塑了我。
                 </p>
             </div>
-            <div class="voice-slider" id="voiceSlider">
-                <div class="voice-slide">
-                    <p>"诗歌它对我，它不是娱乐，不是消遣，它是武器，让我开山劈路的……因为在车间，我真的不知道我是在创造价值还是制造垃圾，所以我那时候是每天都得写，哪怕写的不好，我要是一天没写觉得自己白活了。"</p>
-                    <p class="voice-source">—— 小海，新工人诗人</p>
+            <div class="slider-wrap">
+                <div class="voice-slider" id="voiceSlider">
+                    <div class="voice-slide">
+                        <p>"诗歌它对我，它不是娱乐，不是消遣，它是武器，让我开山劈路的……因为在车间，我真的不知道我是在创造价值还是制造垃圾，所以我那时候是每天都得写，哪怕写的不好，我要是一天没写觉得自己白活了。"</p>
+                        <p class="voice-source">—— 小海，新工人诗人</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"我穿过昨夜的城市，吐出那枚铁做的月亮……献给失业了半个月的四川小王、河南老李，献给因为工伤骨折的会拉二胡的安徽木匠刘师傅，献给工资税减后交不起房贷车贷年轻的打工人，献给一无所有一事无成的像我们这样的大龄失败者。"</p>
+                        <p class="voice-source">—— 许多，谷仓乐队，《返乡青年》歌词</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"露天电影往那一拉，大家就都出门了。孩子们在一起可以玩，大人可以陪着。那样才是真正的生活，鲜活的生活，有尊严的生活。"</p>
+                        <p class="voice-source">—— 沈金花，同心学校校长</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"夜晚真是太好了。卸下一天的负累，洗去身上的疲惫，躺在床上，整个世界属于我。只有在黑夜里，我才是真实的自己。"</p>
+                        <p class="voice-source">—— 梦雨（李文丽），家政工，诗人 / 画家</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"活着就要做点和吃饭无关的事，满足一下自己的精神欲望。一本书读完可能很快就忘干净了，好比竹篮打水一场空，但是竹篮经过一次次水的洗礼，会一次比一次干净。"</p>
+                        <p class="voice-source">—— 范雨素，家政工，中国作家协会会员</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"这个博物馆是我工作了15年的地方。我从一个17岁的小姑娘不满18岁来到了皮村，然后在这个地方工作，认识了我老公，生了俩孩子，一直到现在32岁。这个博物馆和这个机构，给了我很多很多很多的回忆。"</p>
+                        <p class="voice-source">—— 小付，文学小组召集人</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"普法战争时期，德国占领法国一个地方，都德写了《最后一课》。如果咱们也叫'最后一课'，就感觉到有点太悲情了。所以还是回到鲁迅，讲1936年，母亲去世前的一夜。"</p>
+                        <p class="voice-source">—— 张慧瑜，北京大学研究员，文学小组志愿讲师</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"一个月休息两天……上周六是吴老师最后一次课了……我忘了打伞了，下了班换了衣服赶快就走……雨越下越大，我就跑起来一直跑一直跑……傅老师看见我进来了，赶快让我坐在那块，又回来给我拿了纸巾，让我擦脸上的雨水。"</p>
+                        <p class="voice-source">—— 王宽芳，清洁工，文学小组成员</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"我没苦难啊。我的苦难，我都推到别人身上去了嘛。我刚去参加了一个腾讯组织的脱口秀节目，为什么我去参加那个脱口秀？也就是打破这些人对家政工的刻板印象。"</p>
+                        <p class="voice-source">—— 施洪丽，家政工，文学小组成员</p>
+                    </div>
+                    <div class="voice-slide">
+                        <p>"家政工作是我们的一种职业，但是它不是我们的生活，我们也应该有我们自己的生活。我们的出外学习、沟通、个人社交，我们应该也有跟这个世界、跟这个社会沟通接触的机会。"</p>
+                        <p class="voice-source">—— 阿蔚，家政工，漫画家，文学小组成员</p>
+                    </div>
                 </div>
-                <div class="voice-slide">
-                    <p>"我穿过昨夜的城市，吐出那枚铁做的月亮……献给失业了半个月的四川小王、河南老李，献给因为工伤骨折的会拉二胡的安徽木匠刘师傅，献给工资税减后交不起房贷车贷年轻的打工人，献给一无所有一事无成的像我们这样的大龄失败者。"</p>
-                    <p class="voice-source">—— 许多，谷仓乐队，《返乡青年》歌词</p>
-                </div>
-                <div class="voice-slide">
-                    <p>"露天电影往那一拉，大家就都出门了。孩子们在一起可以玩，大人可以陪着。那样才是真正的生活，鲜活的生活，有尊严的生活。"</p>
-                    <p class="voice-source">—— 沈金花，同心学校校长</p>
-                </div>
-                <div class="voice-slide">
-                    <p>"夜晚真是太好了。卸下一天的负累，洗去身上的疲惫，躺在床上，整个世界属于我。只有在黑夜里，我才是真实的自己。"</p>
-                    <p class="voice-source">—— 梦雨（李文丽），家政工，诗人 / 画家</p>
-                </div>
-                <div class="voice-slide">
-                    <p>"活着就要做点和吃饭无关的事，满足一下自己的精神欲望。一本书读完可能很快就忘干净了，好比竹篮打水一场空，但是竹篮经过一次次水的洗礼，会一次比一次干净。"</p>
-                    <p class="voice-source">—— 范雨素，家政工，中国作家协会会员</p>
-                </div>
-                <div class="voice-slide">
-                    <p>"这个博物馆是我工作了15年的地方。我从一个17岁的小姑娘不满18岁来到了皮村，然后在这个地方工作，认识了我老公，生了俩孩子，一直到现在32岁。这个博物馆和这个机构，给了我很多很多很多的回忆。"</p>
-                    <p class="voice-source">—— 小付，文学小组召集人</p>
-                </div>
-                <div class="voice-slide">
-                    <p>"普法战争时期，德国占领法国一个地方，都德写了《最后一课》。如果咱们也叫'最后一课'，就感觉到有点太悲情了。所以还是回到鲁迅，讲1936年，母亲去世前的一夜。"</p>
-                    <p class="voice-source">—— 张慧瑜，北京大学研究员，文学小组志愿讲师</p>
-                </div>
-                <div class="voice-slide">
-                    <p>"一个月休息两天……上周六是吴老师最后一次课了……我忘了打伞了，下了班换了衣服赶快就走……雨越下越大，我就跑起来一直跑一直跑……傅老师看见我进来了，赶快让我坐在那块，又回来给我拿了纸巾，让我擦脸上的雨水。"</p>
-                    <p class="voice-source">—— 王宽芳，清洁工，文学小组成员</p>
-                </div>
-                <div class="voice-slide">
-                    <p>"我没苦难啊。我的苦难，我都推到别人身上去了嘛。我刚去参加了一个腾讯组织的脱口秀节目，为什么我去参加那个脱口秀？也就是打破这些人对家政工的刻板印象。"</p>
-                    <p class="voice-source">—— 施洪丽，家政工，文学小组成员</p>
-                </div>
-                <div class="voice-slide">
-                    <p>"家政工作是我们的一种职业，但是它不是我们的生活，我们也应该有我们自己的生活。我们的出外学习、沟通、个人社交，我们应该也有跟这个世界、跟这个社会沟通接触的机会。"</p>
-                    <p class="voice-source">—— 阿蔚，家政工，漫画家，文学小组成员</p>
-                </div>
+                <button class="slider-nav prev" id="voicePrev" aria-label="上一个">
+                    <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="slider-nav next" id="voiceNext" aria-label="下一个">
+                    <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
             </div>
 
         </div>
@@ -2114,55 +2180,63 @@
 
     <div class="horizontal-gallery-section">
         <p class="gallery-section-label">影像切片 · 16帧</p>
-        <div class="horizontal-gallery">
-            <div class="h-gallery-item">
-                <img src="./ls1.jpg" alt="">
+        <div class="slider-wrap">
+            <div class="horizontal-gallery" id="gallerySlider">
+                <div class="h-gallery-item">
+                    <img src="./ls1.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls2.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls3.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls4.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls5.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls6.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls7.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls8.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls9.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls11.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls12.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls13.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls14.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls15.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls16.jpg" alt="">
+                </div>
+                <div class="h-gallery-item">
+                    <img src="./ls17.jpg" alt="">
+                </div>
             </div>
-            <div class="h-gallery-item">
-                <img src="./ls2.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls3.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls4.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls5.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls6.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls7.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls8.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls9.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls11.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls12.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls13.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls14.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls15.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls16.jpg" alt="">
-            </div>
-            <div class="h-gallery-item">
-                <img src="./ls17.jpg" alt="">
-            </div>
+            <button class="slider-nav prev" id="galleryPrev" aria-label="上一个">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="slider-nav next" id="galleryNext" aria-label="下一个">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
         </div>
     </div>
 
@@ -2198,7 +2272,7 @@
                 她以惊人的自我剥削，在"债务-投资"的循环中不停奔跑，试图将携有鱼腥味的经济资本，兑换成抖音账号里的文化<wbr>资本与企业家网络中的社会资本。而这些碎片化的场景并非关于"逆袭"的神话，而是关于中产者"悬浮"状态下具体的生存策略。
             </p>
             <p class="quote">
-                在人口流失与产业转型的宏大叙事下，个体所有的努力，往往并非为了攀升，而只是为了维系一种"不下滑"的脆弱平衡。
+                在人口流失与产业转型的宏大叙事下，个体所有的努力，往往并非为了攀升，<br>而只是为了维系一种"不下滑"的脆弱平衡。
             </p>
         </div>
     </div>
@@ -2411,7 +2485,9 @@
     </div>
     </div>
 
-    <div class="project6-works" style="padding: 60px; background: var(--bg-primary); color: var(--text-primary);">
+    <div class="project6-works" style="padding: 60px; background-image: url('./bg-project6.jpg'); background-size: cover; background-position: center center; color: var(--text-primary); position: relative;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.88) 0%, rgba(26,26,26,0.92) 50%, rgba(26,26,26,0.88) 100%);z-index:0;pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;">
         <div class="grid-4-wrap works-grid">
             <div class="work-card">
                 <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2022 · 西藏日喀则南木林</p>
@@ -2456,10 +2532,12 @@
             </div>
         </div>
     </div>
+    </div>
 
-    <div class="project6-reflection" style="background: var(--bg-primary); padding: 80px 60px; text-align: center; color: var(--text-primary);">
-        <div style="max-width: 700px; margin: 0 auto;">
-            <p style="font-size: 1.05rem; line-height: 2.2; color: #555; font-style: italic; font-family: var(--font-serif);">
+    <div class="project6-reflection" style="background-image: url('./bg-project6.jpg'); background-size: cover; background-position: center center; padding: 80px 60px; text-align: center; color: var(--text-primary); position: relative;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.9) 50%, rgba(26,26,26,0.85) 100%);z-index:0;pointer-events:none;"></div>
+        <div style="position:relative;z-index:1;max-width: 700px; margin: 0 auto;">
+            <p style="font-size: 1.05rem; line-height: 2.2; color: #bbb; font-style: italic; font-family: var(--font-serif);">
                 "作为曾经的播音生，我一度急切地磨练有声语言表达与新闻采写编能力，想在'向世界传递中国声音'中奉献小我力量。而在一次次实践过程里，我发现田野间的具身性经验，远比演播室里的字正腔圆更为可贵。于是，我开始真正以身体为媒介，去地方上和真实而具体的个体打交道，去理解和记录那些在全球化浪潮中依然坚守的文化根脉。"
             </p>
         </div>
@@ -2526,22 +2604,139 @@
 
     function goToSlide(index) {
         const slider = document.querySelector('.diary-slider');
-        const slides = document.querySelectorAll('.diary-slide');
+        const slides = slider ? slider.querySelectorAll('.diary-slide') : document.querySelectorAll('.diary-slide');
         const dots = document.querySelectorAll('.diary-dot');
         if (slider && slides[index]) {
-            slider.scrollTo({ left: slides[index].offsetLeft - slider.offsetLeft, behavior: 'smooth' });
+            slides[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
             dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
         }
     }
 
     const diarySlider = document.querySelector('.diary-slider');
     if (diarySlider) {
-        diarySlider.addEventListener('scroll', function() {
-            const slides = document.querySelectorAll('.diary-slide');
+        // Desktop mouse drag support
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        diarySlider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            diarySlider.style.cursor = 'grabbing';
+            diarySlider.style.scrollSnapType = 'none';
+            startX = e.pageX - diarySlider.offsetLeft;
+            scrollLeft = diarySlider.scrollLeft;
+        });
+        diarySlider.addEventListener('mouseleave', () => {
+            if (isDown) {
+                isDown = false;
+                diarySlider.style.cursor = 'grab';
+                diarySlider.style.scrollSnapType = 'x mandatory';
+                syncDiaryDots();
+            }
+        });
+        diarySlider.addEventListener('mouseup', () => {
+            isDown = false;
+            diarySlider.style.cursor = 'grab';
+            diarySlider.style.scrollSnapType = 'x mandatory';
+            syncDiaryDots();
+        });
+        diarySlider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - diarySlider.offsetLeft;
+            const walk = (x - startX) * 1.5;
+            diarySlider.scrollLeft = scrollLeft - walk;
+        });
+        diarySlider.style.cursor = 'grab';
+
+        function syncDiaryDots() {
+            const slides = diarySlider.querySelectorAll('.diary-slide');
             const dots = document.querySelectorAll('.diary-dot');
-            const scrollLeft = this.scrollLeft;
-            const slideWidth = slides[0] ? slides[0].offsetWidth + 30 : 0;
-            if (slideWidth > 0) {
-                const index = Math.round(scrollLeft / slideWidth);
-                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-        
+            const sliderCenter = diarySlider.scrollLeft + diarySlider.offsetWidth / 2;
+            let closestIndex = 0;
+            let minDistance = Infinity;
+            slides.forEach((slide, i) => {
+                const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+                const dist = Math.abs(slideCenter - sliderCenter);
+                if (dist < minDistance) {
+                    minDistance = dist;
+                    closestIndex = i;
+                }
+            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === closestIndex));
+        }
+
+        diarySlider.addEventListener('scroll', function() {
+            if (diarySlider.style.scrollSnapType === 'none') return;
+            syncDiaryDots();
+        });
+    }
+
+    // ===== Generic slider navigation + drag =====
+    function initSlider(opts) {
+        const slider = opts.slider;
+        const prevBtn = opts.prev;
+        const nextBtn = opts.next;
+        if (!slider) return;
+
+        const slides = () => slider.querySelectorAll(opts.slideSelector);
+        let isDown = false, startX, scrollLeft;
+
+        function updateNav() {
+            if (prevBtn) prevBtn.classList.toggle('disabled', slider.scrollLeft <= 5);
+            if (nextBtn) {
+                const maxScroll = slider.scrollWidth - slider.clientWidth;
+                nextBtn.classList.toggle('disabled', slider.scrollLeft >= maxScroll - 5);
+            }
+        }
+
+        function go(dir) {
+            const items = slides();
+            if (!items.length) return;
+            const sliderCenter = slider.scrollLeft + slider.clientWidth / 2;
+            let current = 0, minD = Infinity;
+            items.forEach((s, i) => {
+                const c = s.offsetLeft + s.offsetWidth / 2;
+                const d = Math.abs(c - sliderCenter);
+                if (d < minD) { minD = d; current = i; }
+            });
+            const next = Math.max(0, Math.min(items.length - 1, current + dir));
+            if (items[next]) items[next].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+
+        if (prevBtn) prevBtn.addEventListener('click', () => go(-1));
+        if (nextBtn) nextBtn.addEventListener('click', () => go(1));
+
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            slider.style.scrollSnapType = 'none';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => { if (isDown) { isDown = false; slider.style.cursor = 'grab'; slider.style.scrollSnapType = 'x mandatory'; updateNav(); } });
+        slider.addEventListener('mouseup', () => { isDown = false; slider.style.cursor = 'grab'; slider.style.scrollSnapType = 'x mandatory'; updateNav(); });
+        slider.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); const x = e.pageX - slider.offsetLeft; slider.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+        slider.style.cursor = 'grab';
+        slider.addEventListener('scroll', () => { if (!isDown) updateNav(); });
+
+        // initial state
+        requestAnimationFrame(updateNav);
+    }
+
+    initSlider({
+        slider: document.getElementById('voiceSlider'),
+        prev: document.getElementById('voicePrev'),
+        next: document.getElementById('voiceNext'),
+        slideSelector: '.voice-slide'
+    });
+    initSlider({
+        slider: document.getElementById('gallerySlider'),
+        prev: document.getElementById('galleryPrev'),
+        next: document.getElementById('galleryNext'),
+        slideSelector: '.h-gallery-item'
+    });
+
+</script>
+</body>
+</html>
