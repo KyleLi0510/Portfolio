@@ -19,6 +19,7 @@
             --font-sans: 'Noto Sans SC', 'PingFang SC', sans-serif;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; }
         body {
             font-family: var(--font-sans);
             background: var(--bg-primary);
@@ -161,38 +162,37 @@
             margin-top: 4px;
         }
         .work-card {
-            background: #fff;
-            border: 1px solid rgba(139,115,85,0.4);
+            background-color: #f5f0e8 !important;
+            border: 1px solid rgba(139,115,85,0.45) !important;
             padding: 35px 25px;
-            transition: transform 0.4s ease;
+            color: #1a1a1a !important;
+            -webkit-font-smoothing: antialiased;
         }
-        .work-card h3 { color: var(--text-primary); }
+        .work-card h3 { color: #1a1a1a; }
         .work-role {
             font-size: 0.8rem;
-            color: #888;
+            color: #555;
             margin-bottom: 20px;
             line-height: 1.6;
         }
         .work-awards {
             font-size: 0.85rem;
-            color: #666;
+            color: #444;
             line-height: 1.8;
             margin-bottom: 20px;
         }
         .work-awards p { margin-bottom: 6px; }
         .work-awards span {
-            color: #888;
+            color: #666;
             font-size: 0.75rem;
         }
         .work-link {
             font-size: 0.75rem;
-            color: #666;
+            color: #555;
             text-decoration: none;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #bbb;
             padding-bottom: 2px;
         }
-        .work-card { transition: none; }
-        .work-card:hover { transform: none; }
         .cover-scroll {
             position: absolute;
             bottom: 40px;
@@ -1189,7 +1189,7 @@
         .cv-layout { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 80px; align-items: start; max-width: 1400px; margin: 0 auto; min-width: 0; }
         .cv-photo { position: sticky; top: 120px; }
         .cv-photo img { width: 100%; height: 420px; object-fit: cover; filter: grayscale(30%); display: block; }
-        .cv-text { word-wrap: break-word; overflow-wrap: break-word; }
+        .cv-text { word-wrap: break-word; overflow-wrap: break-word; word-break: keep-all; }
 
         @media (max-width: 768px) {
             nav { padding: 20px 30px; }
@@ -1238,9 +1238,9 @@
             .cv-layout { display: flex; flex-direction: column; width: 100%; max-width: 100%; }
             .cv-photo { position: relative; top: 0; width: 100%; max-width: 100%; }
             .cv-photo img { width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; }
-            .cv-text { font-size: 0.95rem; line-height: 2; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }
-            .exp-card { flex: 0 0 85%; max-width: 85%; padding: 25px; }
-            .exp-slider { gap: 12px; padding: 0; }
+            .cv-text { font-size: 0.95rem; line-height: 1.9; word-wrap: break-word; overflow-wrap: break-word; word-break: keep-all; }
+            .exp-slider { display: flex; flex-direction: row; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 0 15px; -webkit-overflow-scrolling: touch; }
+            .exp-card { flex: 0 0 85%; max-width: 340px; scroll-snap-align: start; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 25px 22px; }
             .image-overlay { padding: 25px 15px 15px; }
             .image-desc { font-size: 0.85rem; }
             .image-tag { font-size: 0.7rem; }
@@ -1267,16 +1267,14 @@
 
             .voice-slide { flex: 0 0 auto; width: 85vw; min-width: 300px; height: auto; min-height: 280px; padding: 25px 20px; }
             .voice-slider { gap: 15px; }
-            .exp-card { flex: 0 0 90%; padding: 25px; }
-            .exp-card-desc { font-size: 0.85rem; }
-            .exp-slider { gap: 15px; }
+            .exp-card-desc { font-size: 0.85rem; color: #555; line-height: 1.7; }
             .image-item img[style*="height"] { height: auto !important; min-height: 220px; }
             .yy-item { width: 80vw; }
             .h-gallery-item { width: 80vw; }
             .horizontal-gallery { height: 55vh; min-height: 420px; }
             .episode-card { padding: 30px 20px; }
             .project-card { padding: 30px 20px; }
-            .cv-section { padding: 60px 30px; overflow-x: hidden; }
+            .cv-section { padding: 60px 16px; overflow-x: hidden; }
             .field-notes { padding: 60px 30px; }
             .audio-archive { padding: 60px 30px; }
             .project1-hero, .project2-hero, .project5-hero { padding: 100px 30px 60px; }
@@ -1294,6 +1292,13 @@
             .project-info-bar {
                 gap: 20px;
             }
+            .work-card { background-color: #f5f0e8 !important; border: 1px solid rgba(139,115,85,0.45) !important; padding: 30px 20px; text-align: left; color: #1a1a1a !important; }
+            .work-card h3 { color: #111 !important; text-align: left; }
+            .work-card p, .work-role, .work-awards, .work-awards p, .work-link { text-align: left !important; }
+            .work-role { color: #333 !important; }
+            .work-awards { color: #222 !important; }
+            .work-awards span { color: #444 !important; }
+            .work-link { color: #333 !important; border-bottom-color: #888 !important; }
         }
     </style>
 <base target="_blank">
@@ -1339,7 +1344,8 @@
                 中国音乐学院社会艺术水平（朗诵 10 级、钢琴 10 级、美声 10 级）、青年艺术水平等级（国标舞 12 级）等证书。
             </p>
             <p class="cv-text">
-                田野足迹遍及甘孜藏区、贵州黔东南、北京皮村、大凉山彝区、青海同仁等地，以影像为方法探索文化深度与人性温度。<br>所作影片先后获得亚洲国际青年电影节最佳纪录短片提名、美国Global Film Exhibition最佳纪录长片、中国纪录片学院奖入围、西湖青年纪录片放映周最佳短纪录片等荣誉。
+                田野足迹遍及甘孜藏区、贵州黔东南、北京皮村、大凉山彝区、青海同仁等地，以影像为方法探索文化深度与人性温<wbr>度。
+                <br>所作影片先后获得亚洲国际青年电影节最佳纪录短片提名、美国Global Film Exhibition最佳纪录长片、中国纪录片学院奖入围、西湖青年纪录片放映周最佳短纪录片等荣誉。
             </p>
 
             <p class="cv-label" style="margin-top: 50px;">实践经历</p>
@@ -1424,7 +1430,7 @@
             <div class="project-card-number">03</div>
             <h3 class="project-card-title">行动在凉山</h3>
             <p class="project-card-location">大凉山昭觉 · 玛薇社工服务中心</p>
-            <p class="project-card-desc">协助搜集困境儿童与非遗传承人信息，设置影像行动点位，组织彝族中学生拍摄家乡文化。</p>
+            <p class="project-card-desc">协助搜集困境<wbr>儿童与非遗传承<wbr>人信息，设置影像行动点位，组织彝族<wbr>中学生拍摄家乡文化。</p>
             <span class="project-focus">NGO社工服务 · 行动人类学</span>
         </div>
 
@@ -1475,10 +1481,10 @@
                 2025年6月，北京皮村新工人文学小组将面临他们的第二次搬迁。影片以这场熟悉而紧迫的空间危机为线索，从杏树追忆、下河捞车、侧街找房等场景中记录小组成员们历时半年的自我建构。
             </p>
             <p>
-                影片同时着眼时代变迁下"新工人"定义边界的扩张——它不再仅仅指向传统的农村户籍进城务工者，还包含如今那些失去原有社会位置、于城市边缘重新定位身份的人们。
+                影片同时着眼时代变迁下"新工人"定义边界的扩张——<br>它不再仅仅指向传统的农村户籍进城务工<wbr>者，还包含如今那些失去原有社会<wbr>位置、于城市边缘重新定位身份的人们。
             </p>
             <p class="quote">
-                "我们是矿工、家政工、泥瓦匠、育儿嫂、机械工人……也是用汗水、用厄运、用顽强、用永不低头的力量书写诗歌的人。"
+                "我们是矿工、家政工、泥瓦匠、育儿嫂、机械工人……<br>也是用汗水、用厄运、用顽强、用永不低头的力量书写诗歌的人。"
             </p>
         </div>
     </div>
@@ -1487,13 +1493,13 @@
         <div class="video-container">
             <div>
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1Jyo1BuE7s&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1Jyo1BuE7s&page=1&autoplay=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <p class="video-caption">预告片 · 《相聚在皮村》文学小组十周年之歌</p>
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116477365585642&bvid=BV1J1o1BBEEk&cid=37886363893&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116477365585642&bvid=BV1J1o1BBEEk&cid=37886363893&p=1&autoplay=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <p class="video-caption">杏树下 · 我们的十年追忆活动</p>
             </div>
@@ -1867,7 +1873,7 @@
             <h3>行动在凉山</h3>
             <p class="en-title">Empowerment in Liangshan</p>
             <p>
-                协助玛薇社工发展中心搜集困境儿童与非遗传承人信息，设置社区影像行动点位，组织彝族中学生拍摄家乡文化，探索从"协助"到"赋权"的行动人类学路径。
+                协助玛薇社工发展中心搜集困境<wbr>儿童与非遗传承<wbr>人信息，设置社区影像行动点位，组织彝族<wbr>中学生拍摄家乡文化，探索从"协助"到"赋权"的行动人类学路径。
             </p>
             <p>
                 影像赋权不是施舍镜头，而是把观看的权力交还给被观看的人。当彝族中学生开始记录自己的毕摩、自己的花海、自己的苦荞收割，人类学才真正从"关于他们的知识"变成"他们自己的知识"。
@@ -2081,7 +2087,7 @@
                 鱼市摊主，时装店主，文化博主，几个迥异的身份标签共同拼贴出当下中国县域中产者的典型面貌。镜头追随来自大理南涧的90后女性谷海萍，记录了她在时代浪潮中捕捉每一个机会的故事。
             </p>
             <p>
-                她以惊人的自我剥削，在"债务-投资"的循环中不停奔跑，试图将携有鱼腥味的经济资本，兑换成抖音账号里的文化资本与企业家网络中的社会资本。而这些碎片化的场景并非关于"逆袭"的神话，而是关于中产者"悬浮"状态下具体的生存策略。
+                她以惊人的自我剥削，在"债务-投资"的循环中不停奔跑，试图将携有鱼腥味的经济资本，兑换成抖音账号里的文化<wbr>资本与企业家网络中的社会资本。而这些碎片化的场景并非关于"逆袭"的神话，而是关于中产者"悬浮"状态下具体的生存策略。
             </p>
             <p class="quote">
                 在人口流失与产业转型的宏大叙事下，个体所有的努力，往往并非为了攀升，而只是为了维系一种"不下滑"的脆弱平衡。
@@ -2096,7 +2102,7 @@
             </div>
             <div>
                 <div class="video-wrapper">
-                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116478321952354&bvid=BV1gkoyBQEjD&cid=37892458535&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116478321952354&bvid=BV1gkoyBQEjD&cid=37892458535&p=1&autoplay=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
                 </div>
                 <p class="video-caption">片花 · Year after Year</p>
             </div>
@@ -2430,10 +2436,4 @@
             if (slideWidth > 0) {
                 const index = Math.round(scrollLeft / slideWidth);
                 dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-            }
-        });
-    }
-</script>
-
-</body>
-</html>
+        
