@@ -160,6 +160,38 @@
             color: #888;
             margin-top: 4px;
         }
+        .work-card {
+            background: #fff;
+            border: 1px solid rgba(139,115,85,0.4);
+            padding: 35px 25px;
+            transition: transform 0.4s ease;
+        }
+        .work-card h3 { color: var(--text-primary); }
+        .work-role {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .work-awards {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .work-awards p { margin-bottom: 6px; }
+        .work-awards span {
+            color: #888;
+            font-size: 0.75rem;
+        }
+        .work-link {
+            font-size: 0.75rem;
+            color: #666;
+            text-decoration: none;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 2px;
+        }
+        .work-card:hover { transform: translateY(-4px); }
         .cover-scroll {
             position: absolute;
             bottom: 40px;
@@ -1152,9 +1184,10 @@
         .exp-dots { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
         .exp-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; cursor: pointer; transition: background 0.3s; }
         .exp-dot.active { background: var(--accent); }
-        .cv-layout { display: grid; grid-template-columns: 320px 1fr; gap: 80px; align-items: start; max-width: 1400px; margin: 0 auto; overflow-x: hidden; }
+        .cv-layout { display: grid; grid-template-columns: 320px 1fr; gap: 80px; align-items: start; max-width: 1400px; margin: 0 auto; }
         .cv-photo { position: sticky; top: 120px; }
         .cv-photo img { width: 100%; height: 420px; object-fit: cover; filter: grayscale(30%); display: block; }
+        .cv-text { word-wrap: break-word; overflow-wrap: break-word; }
 
         @media (max-width: 768px) {
             nav { padding: 20px 30px; }
@@ -1200,10 +1233,10 @@
                 flex-direction: column;
             }
             .grid-2, .grid-3, .grid-3-narrow, .grid-4, .grid-4-wrap { grid-template-columns: 1fr !important; gap: 20px; }
-            .cv-layout { grid-template-columns: 1fr; gap: 30px; width: 100%; max-width: 100%; overflow-x: hidden; }
-            .cv-photo { position: relative; top: 0; width: 100%; text-align: center; }
-            .cv-photo img { width: 70%; height: auto; object-fit: contain; margin: 0 auto; display: block; }
-            .cv-text { font-size: 0.95rem; line-height: 2; }
+            .cv-layout { display: flex; flex-direction: column; width: 100%; max-width: 100%; }
+            .cv-photo { position: relative; top: 0; width: 100%; max-width: 100%; }
+            .cv-photo img { width: 100%; max-width: 100%; height: auto; display: block; margin: 0 auto; }
+            .cv-text { font-size: 0.95rem; line-height: 2; word-wrap: break-word; overflow-wrap: break-word; }
             .exp-card { flex: 0 0 85%; max-width: 85%; padding: 25px; }
             .exp-slider { gap: 12px; padding: 0; }
             .image-overlay { padding: 25px 15px 15px; }
@@ -2262,64 +2295,52 @@
     </div>
 
     <div style="padding: 60px; background: var(--bg-dark);">
-        <div class="grid-4-wrap">
-
-            <div style="background: white; border: 1px solid rgba(139,115,85,0.4); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-4px)';" onmouseout="this.style.transform='translateY(0)';">
+        <div class="grid-4-wrap works-grid">
+            <div class="work-card">
                 <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2022 · 西藏日喀则南木林</p>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">扎旺与普尺</h3>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">导演助理 · 旁白配音</p>
-                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> 入围第三届民族影视与影视人类学作品展</p>
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 2023年亚洲研究协会AAS Film Expo影展</p>
-                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 美国波士顿亚洲研究协会年会展映</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;">扎旺与普尺</h3>
+                <p class="work-role">导演助理 · 旁白配音</p>
+                <div class="work-awards">
+                    <p><span>01</span> 入围第三届民族影视与影视人类学作品展</p>
+                    <p><span>02</span> 2023年亚洲研究协会AAS Film Expo影展</p>
+                    <p><span>03</span> 美国波士顿亚洲研究协会年会展映</p>
                 </div>
-                <a href="https://news.cctv.com/2024/03/01/VIDE6IFWw1l3YS8FIc7UK7Kw240301.shtml" target="_blank" style="font-size: 0.75rem; color: #666; text-decoration: none; border-bottom: 1px solid #ccc; padding-bottom: 2px;">西藏新闻联播播出 →</a>
+                <a href="https://news.cctv.com/2024/03/01/VIDE6IFWw1l3YS8FIc7UK7Kw240301.shtml" target="_blank" class="work-link">西藏新闻联播播出 →</a>
             </div>
-
-            <div style="background: white; border: 1px solid rgba(139,115,85,0.4); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-4px)';" onmouseout="this.style.transform='translateY(0)';">
-                <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2023·安徽庐江</p>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">我去了外星球</h3>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">副导演</p>
-                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> 入围第十三届中国纪录片学院奖</p>
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 理想国艺术电影节</p>
-                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 美国Global Film Exhibition最佳纪录长片</p>
+            <div class="work-card">
+                <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2023 · 安徽庐江</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;">我去了外星球</h3>
+                <p class="work-role">副导演</p>
+                <div class="work-awards">
+                    <p><span>01</span> 入围第十三届中国纪录片学院奖</p>
+                    <p><span>02</span> 理想国艺术电影节</p>
+                    <p><span>03</span> 美国Global Film Exhibition最佳纪录长片</p>
                 </div>
             </div>
-
-            <div style="background: white; border: 1px solid rgba(139,115,85,0.4); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-4px)';" onmouseout="this.style.transform='translateY(0)';">
+            <div class="work-card">
                 <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2025 · 青海同仁</p>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">热贡六月生万物</h3>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">后期制作 · 旁白配音</p>
-                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> "青年服务国家"首都大学生暑期社会实践市级先进团队</p>
-                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 中央民族大学优秀视频作品</p>
-                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 中央民族大学优秀调研报告</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;">热贡六月生万物</h3>
+                <p class="work-role">后期制作 · 旁白配音</p>
+                <div class="work-awards">
+                    <p><span>01</span> "青年服务国家"首都大学生暑期社会实践市级先进团队</p>
+                    <p><span>02</span> 中央民族大学优秀视频作品</p>
+                    <p><span>03</span> 中央民族大学优秀调研报告</p>
                 </div>
             </div>
-
-            <div style="background: white; border: 1px solid rgba(139,115,85,0.4); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.transform='translateY(-4px)';" onmouseout="this.style.transform='translateY(0)';">
+            <div class="work-card">
                 <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">跨界合作 · 清华美院陶瓷系</p>
-                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">物质文化实践</h3>
-                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">三次项目合作</p>
-                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
-                    <p style="margin-bottom: 8px;"><span style="color: #888; font-size: 0.75rem;">01</span> 宜兴紫砂——教育部语言司多语种中华传统文化宣传视频</p>
-                    <p style="margin-bottom: 8px;"><span style="color: #888; font-size: 0.75rem;">02</span> 克拉玛依紫砂展览</p>
-                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 2026年6月清华艺博中国现代民间陶瓷艺术展傣陶板块纪录片及展品图样拍摄（北京文化艺术基金支持的纵向课题）</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px;">物质文化实践</h3>
+                <p class="work-role">三次项目合作</p>
+                <div class="work-awards">
+                    <p><span>01</span> 宜兴紫砂——教育部语言司多语种中华传统文化宣传视频</p>
+                    <p><span>02</span> 克拉玛依紫砂展览</p>
+                    <p><span>03</span> 2026年6月清华艺博中国现代民间陶瓷艺术展傣陶板块纪录片及展品图样拍摄（北京文化艺术基金支持的纵向课题）</p>
                 </div>
-
             </div>
-
         </div>
     </div>
 
-    <div style="background: var(--bg-warm); padding: 80px 60px; text-align: center;">
-        <div style="max-width: 700px; margin: 0 auto;">
-            <p style="font-size: 1.05rem; line-height: 2.2; color: #555; font-style: italic; font-family: var(--font-serif);">
-                "作为曾经的播音生，我一度急切地磨练有声语言表达与新闻采写编能力，想在'向世界传递中国声音'中奉献小我力量。而在一次次实践过程里，我发现田野间的具身性经验，远比演播室里的字正腔圆更为可贵。于是，我开始真正以身体为媒介，去地方上和真实而具体的个体打交道，去理解和记录那些在全球化浪潮中依然坚守的文化根脉。"
-            </p>
-        </div>
-    </div>
+
 </div>
 </section>
 
