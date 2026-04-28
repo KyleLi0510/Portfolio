@@ -1,0 +1,2406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李源凯 · 影视人类学作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #f7f5f0;
+            --bg-dark: #1a1a1a;
+            --bg-warm: #f0ebe3;
+            --text-primary: #2c2c2c;
+            --text-light: #f7f5f0;
+            --text-muted: #888;
+            --accent: #8b7355;
+            --border: #e0ddd5;
+            --font-serif: 'Noto Serif SC', 'Songti SC', serif;
+            --font-sans: 'Noto Sans SC', 'PingFang SC', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 24px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(247,245,240,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.05);
+        }
+        nav.scrolled .nav-name,
+        nav.scrolled .nav-links a {
+            color: var(--text-primary);
+        }
+        .nav-name {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        .nav-links a {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .cover {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .cover-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            background-image: url('./cover.png');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: brightness(0.4);
+            transform: scale(1.02);
+        }
+        .cover-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--text-light);
+        }
+        .cover-name {
+            font-family: var(--font-serif);
+            font-size: 4rem;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+        }
+        .cover-title {
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 40px;
+        }
+
+        /* 项目编号侧边竖排索引 */
+        .side-index {
+            position: absolute;
+            right: 35px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            z-index: 10;
+            pointer-events: none;
+            user-select: none;
+        }
+        .side-index .si-number {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+            letter-spacing: 0.05em;
+        }
+        .side-index .si-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            opacity: 0.5;
+        }
+        .side-index .si-label {
+            writing-mode: vertical-rl;
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .side-index .si-label-cn {
+            writing-mode: vertical-rl;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: #888;
+            margin-top: 4px;
+        }
+        .cover-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: rgba(255,255,255,0.5);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+        .cv-section {
+            padding: 120px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .cv-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 30px;
+        }
+        .cv-text {
+            font-size: 1.05rem;
+            line-height: 2.2;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        .cv-highlight {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .cv-stats {
+            display: flex;
+            gap: 60px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+        .cv-stat {
+            text-align: center;
+        }
+        .cv-stat-number {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        .cv-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+        .awards {
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--bg-warm);
+        }
+        .awards-title {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        .awards-list {
+            list-style: none;
+        }
+        .awards-list li {
+            font-size: 0.9rem;
+            color: #666;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .awards-list li:last-child {
+            border-bottom: none;
+        }
+        .projects-nav {
+            padding: 100px 60px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+        .projects-nav-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        .projects-nav-header h2 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+        .projects-nav-header p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .project-card {
+            border: 1px solid #333;
+            padding: 40px 30px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        .project-card-number {
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            margin-bottom: 20px;
+        }
+        .project-card-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .project-card-location {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .project-card-desc {
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .project-focus {
+            display: inline-block;
+            margin-top: auto;
+            padding: 5px 12px;
+            background: rgba(139,115,85,0.2);
+            border: 1px solid rgba(139,115,85,0.4);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            align-self: flex-start;
+        }
+        .project-divider {
+            height: 2px;
+            background: var(--border);
+            margin: 0 60px;
+        }
+        .project-section {
+            display: block;
+        }
+        .project1-hero {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 140px 60px 80px;
+        }
+        .opening-text {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .opening-text p {
+            font-size: 1.1rem;
+            line-height: 2.2;
+            margin-bottom: 8px;
+            color: #ccc;
+        }
+        .opening-text .en {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+        }
+        .project-info-bar {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 60px;
+            font-size: 0.8rem;
+            color: #888;
+            letter-spacing: 0.05em;
+            flex-wrap: wrap;
+        }
+        .film-intro {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto 80px;
+            text-align: center;
+        }
+        .film-intro h3 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .film-intro .en-title {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+        .film-intro p {
+            font-size: 1rem;
+            line-height: 2;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        .film-intro .quote {
+            font-size: 1.1rem;
+            color: #c9b896;
+            font-style: italic;
+            margin-top: 30px;
+            padding: 20px 20px 0;
+            text-align: center;
+            position: relative;
+        }
+        .film-intro .quote::after {
+            content: '';
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            margin: 20px auto 0;
+            transform: rotate(45deg);
+            opacity: 0.6;
+        }
+        .video-section {
+            padding: 0 60px 80px;
+            background: var(--bg-dark);
+        }
+        .video-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #111;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+        .video-caption {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .video-triple {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .image-grid-section {
+            padding: 80px 60px;
+            background: var(--bg-primary);
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .image-item {
+            position: relative;
+            overflow: hidden;
+        }
+        .image-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            display: block;
+        }
+        .image-item:hover img {
+            transform: scale(1.03);
+        }
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 25px 25px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+        }
+        .image-tag {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+        .image-desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .field-notes {
+            padding: 100px 60px;
+            background: var(--bg-warm);
+        }
+        .notes-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .note-block {
+            margin-bottom: 50px;
+            padding-left: 30px;
+            border-left: 2px solid var(--accent);
+        }
+        .note-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .note-block p {
+            font-size: 1rem;
+            line-height: 2;
+            color: #555;
+        }
+        .audio-archive {
+            padding: 100px 60px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+        .audio-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .audio-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .audio-intro p {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 15px auto 0;
+        }
+        .quote-block {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid var(--accent);
+        }
+        .quote-block p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #ddd;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .quote-source {
+            font-size: 0.8rem;
+            color: #666;
+            letter-spacing: 0.05em;
+        }
+        .project2-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2418 100%);
+            color: var(--text-light);
+            padding: 140px 60px 80px;
+        }
+        .quant-bar {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 60px 0;
+            padding: 40px;
+            background: rgba(139,115,85,0.1);
+            border: 1px solid rgba(139,115,85,0.3);
+            flex-wrap: wrap;
+        }
+        .quant-item {
+            text-align: center;
+        }
+        .quant-number {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .quant-label {
+            font-size: 0.7rem;
+            color: #888;
+            letter-spacing: 0.1em;
+        }
+        .diary-timeline {
+            padding: 60px 0 40px;
+            background: var(--bg-primary);
+        }
+        .diary-slider-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .diary-slider {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            padding: 0 60px;
+        }
+        .diary-slider::-webkit-scrollbar {
+            display: none;
+        }
+        .diary-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            padding: 40px;
+            min-height: 320px;
+        }
+        .diary-slide-header {
+            display: flex;
+            align-items: baseline;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        .diary-slide-day {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .diary-slide-meta {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        .diary-slide h4 {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        .diary-slide p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .diary-slide .highlight {
+            color: var(--accent);
+            font-style: italic;
+            border-left: 2px solid var(--accent);
+            padding-left: 15px;
+            margin: 12px 0;
+            font-size: 0.9rem;
+        }
+        .diary-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .diary-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .diary-dot.active {
+            background: var(--accent);
+        }
+        .diary-dot:hover {
+            background: #bbb;
+        }
+
+        .project3-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 140px 60px 80px;
+            background: #1a1a1a;
+            color: #f7f5f0;
+        }
+        .hero-left .project-number {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            color: #8b7355;
+            margin-bottom: 20px;
+        }
+        .hero-left .project-title {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+        }
+        .hero-left .project-subtitle {
+            font-size: 1rem;
+            color: #999;
+            font-weight: 300;
+        }
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 10px;
+        }
+        .hero-right .hero-quote {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: #c9b896;
+            margin-bottom: 30px;
+        }
+        .hero-right .hero-meta {
+            font-size: 0.8rem;
+            color: #666;
+            letter-spacing: 0.05em;
+        }
+        .empowerment-banner {
+            text-align: center;
+            padding: 100px 60px;
+            background: #f0ebe3;
+        }
+        .empowerment-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #8b7355;
+            margin-bottom: 20px;
+        }
+        .empowerment-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #2c2c2c;
+        }
+        .empowerment-text {
+            font-size: 1.1rem;
+            line-height: 2.2;
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .empowerment-highlight {
+            color: #8b7355;
+            font-weight: 500;
+            font-family: var(--font-serif);
+        }
+        .juxtaposition-container {
+            display: grid;
+            grid-template-columns: 42% 58%;
+        }
+        .data-archive {
+            background: #2c2c2c;
+            color: #f7f5f0;
+            padding: 80px 50px;
+        }
+        .archive-header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 30px;
+        }
+        .archive-header .archive-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: #8b7355;
+            margin-bottom: 12px;
+        }
+        .archive-header h4 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+        .data-block {
+            margin-bottom: 50px;
+        }
+        .data-title {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            color: #999;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .data-item {
+            border-left: 2px solid #8b7355;
+            padding-left: 15px;
+        }
+        .data-number {
+            display: block;
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 200;
+            color: #f7f5f0;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+        .data-unit {
+            font-size: 0.75rem;
+            color: #888;
+        }
+        .data-note {
+            font-size: 0.8rem;
+            color: #777;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+        .concept-cards {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .concept-card {
+            border: 1px solid #444;
+            padding: 20px 15px;
+            text-align: center;
+            flex: 1;
+        }
+        .concept-yi {
+            font-size: 1.2rem;
+            color: #8b7355;
+            margin-bottom: 8px;
+        }
+        .concept-cn {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        .concept-en {
+            font-size: 0.7rem;
+            color: #666;
+        }
+        .image-poetry {
+            background: #f7f5f0;
+            padding: 80px 50px;
+        }
+        .poetry-header {
+            margin-bottom: 50px;
+        }
+        .poetry-header .poetry-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: #8b7355;
+            margin-bottom: 12px;
+        }
+        .poetry-header h4 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: #2c2c2c;
+        }
+        .xiaohongshu-hero {
+            margin-bottom: 50px;
+            background: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .xiaohongshu-hero img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+        .xiaohongshu-caption {
+            padding: 35px 30px;
+        }
+        .xhs-quote {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #8b7355;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .xhs-text {
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .xhs-meta {
+            display: flex;
+            gap: 20px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 0.75rem;
+            color: #999;
+        }
+        .field-reflection {
+            background: #1a1a1a;
+            color: #f7f5f0;
+            padding: 100px 60px;
+        }
+        .reflection-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .reflection-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: #8b7355;
+            margin-bottom: 20px;
+        }
+        .reflection-content h4 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        .reflection-text {
+            font-size: 1rem;
+            line-height: 1.9;
+            color: #bbb;
+            margin-bottom: 20px;
+        }
+        .horizontal-gallery-section {
+            padding: 80px 0;
+            background: #1a1a1a;
+            overflow: hidden;
+        }
+        .gallery-section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: #8b7355;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .horizontal-gallery {
+            display: flex;
+            gap: 3px;
+            height: 65vh;
+            min-height: 500px;
+            max-height: 720px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .horizontal-gallery::-webkit-scrollbar {
+            display: none;
+        }
+        .h-gallery-item {
+            position: relative;
+            flex: 0 0 auto;
+            height: 100%;
+            width: auto;
+            scroll-snap-align: start;
+            overflow: hidden;
+            background: #111;
+        }
+        .h-gallery-item img {
+            height: 100%;
+            width: auto;
+            max-width: none;
+            object-fit: contain;
+            display: block;
+        }
+
+        .project5-hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: var(--text-light);
+            padding: 140px 60px 80px;
+        }
+        .coop-banner {
+            text-align: center;
+            padding: 60px;
+            background: #0f0f23;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+        .coop-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: #8b7355;
+            margin-bottom: 20px;
+        }
+        .coop-title {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+        .coop-names {
+            font-size: 0.9rem;
+            color: #999;
+            line-height: 2;
+        }
+        .coop-names span {
+            color: #c9b896;
+        }
+        .coop-status {
+            margin-top: 25px;
+            padding: 12px 25px;
+            border: 1px solid #8b7355;
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: #8b7355;
+        }
+        .episode-cards {
+            padding: 80px 60px;
+            background: var(--bg-primary);
+        }
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .episode-card {
+            background: white;
+            border: 1px solid var(--border);
+            padding: 40px 30px;
+            transition: all 0.4s ease;
+        }
+        .episode-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        .episode-number {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+        .episode-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        .episode-subtitle {
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .episode-desc {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #666;
+        }
+        .yy-gallery {
+            padding: 80px 0;
+            background: #0f0f23;
+            overflow: hidden;
+        }
+        .yy-gallery-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            color: #8b7355;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .yy-horizontal {
+            display: flex;
+            gap: 3px;
+            height: 450px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .yy-horizontal::-webkit-scrollbar {
+            display: none;
+        }
+        .yy-item {
+            position: relative;
+            flex: 0 0 auto;
+            width: 40vw;
+            height: 100%;
+            scroll-snap-align: start;
+            overflow: hidden;
+        }
+        .yy-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .yy-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 100px 60px 60px;
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .footer-name {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        .footer-contact {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+        .footer-contact a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .footer-copy {
+            font-size: 0.75rem;
+            color: #555;
+            letter-spacing: 0.1em;
+        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1100px; margin: 0 auto; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto; }
+        .grid-3-narrow { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1100px; margin: 0 auto 30px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .grid-4-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; max-width: 1300px; margin: 0 auto; }
+        .yuyu-video-layout { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 300px 1fr; gap: 30px; align-items: start; }
+
+        .voice-slider { display: flex; gap: 3px; overflow-x: auto; scrollbar-width: none; padding: 0; }
+        .voice-slider::-webkit-scrollbar { display: none; }
+        .voice-slide { flex: 0 0 auto; width: auto; min-width: 400px; max-width: 480px; min-height: 320px; background: rgba(255,255,255,0.03); border-right: 1px solid rgba(139,115,85,0.12); padding: 40px 35px; display: flex; flex-direction: column; justify-content: space-between; }
+        .voice-slide p { font-size: 0.95rem; line-height: 1.9; color: #ddd; font-style: italic; margin-bottom: 15px; }
+        .voice-source { font-size: 0.8rem; color: #666; letter-spacing: 0.05em; margin-top: auto; padding-top: 15px; border-top: 1px solid rgba(139,115,85,0.2); }
+        .exp-slider { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 0 20px; max-width: 100%; }
+        .exp-slider::-webkit-scrollbar { display: none; }
+        .exp-card { flex: 0 0 85%; max-width: 520px; scroll-snap-align: start; background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 35px; display: flex; flex-direction: column; }
+        .exp-card-year { font-size: 0.75rem; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 12px; font-weight: 500; }
+        .exp-card-title { font-size: 1.15rem; color: var(--text-primary); font-weight: 500; margin-bottom: 6px; font-family: var(--font-serif); }
+        .exp-card-role { font-size: 0.85rem; color: #888; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .exp-card-desc { font-size: 0.9rem; color: #aaa; line-height: 1.8; }
+        .exp-dots { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+        .exp-dot { width: 8px; height: 8px; border-radius: 50%; background: #333; cursor: pointer; transition: background 0.3s; }
+        .exp-dot.active { background: var(--accent); }
+        .cv-layout { display: grid; grid-template-columns: 320px 1fr; gap: 80px; align-items: start; max-width: 1400px; margin: 0 auto; overflow-x: hidden; }
+        .cv-photo { position: sticky; top: 120px; }
+        .cv-photo img { width: 100%; height: 420px; object-fit: cover; filter: grayscale(30%); display: block; }
+
+        @media (max-width: 768px) {
+            nav { padding: 20px 30px; }
+            .cover-name { font-size: 2.5rem; }
+            .cv-section, .project1-hero, .project2-hero, .project3-hero, .project5-hero {
+                padding: 80px 30px 60px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .image-grid {
+                grid-template-columns: 1fr;
+            }
+            .video-container, .video-triple {
+                grid-template-columns: 1fr;
+            }
+            .cv-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .quant-bar {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .project3-hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .juxtaposition-container {
+                grid-template-columns: 1fr;
+            }
+            .horizontal-gallery {
+                height: 55vh;
+                min-height: 420px;
+            }
+            .h-gallery-item, .yy-item {
+                width: 80vw;
+            }
+            .episodes-grid {
+                grid-template-columns: 1fr;
+            }
+            .concept-cards {
+                flex-direction: column;
+            }
+            .grid-2, .grid-3, .grid-3-narrow, .grid-4, .grid-4-wrap { grid-template-columns: 1fr !important; gap: 20px; }
+            .cv-layout { grid-template-columns: 1fr !important; gap: 30px; }
+            .cv-photo { position: relative; top: 0; width: 100%; text-align: center; }
+            .cv-photo img { width: 100%; max-width: 320px; height: auto; object-fit: contain; margin: 0 auto; display: block; }
+            .image-overlay { padding: 25px 15px 15px; }
+            .image-desc { font-size: 0.85rem; }
+            .image-tag { font-size: 0.7rem; }
+            .image-item img { height: auto; min-height: 220px; }
+            .episode-cards { padding: 60px 30px; }
+            .episodes-grid { grid-template-columns: 1fr; }
+            .concept-cards { flex-direction: column; }
+            .data-grid { grid-template-columns: 1fr; }
+            .quant-bar { flex-direction: column; gap: 30px; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .video-triple { grid-template-columns: 1fr; }
+            .video-container { grid-template-columns: 1fr; }
+            .image-grid { grid-template-columns: 1fr; }
+            .juxtaposition-container { grid-template-columns: 1fr; }
+            nav { padding: 16px 20px; }
+            .nav-links { gap: 20px; }
+            .nav-links a { font-size: 0.7rem; letter-spacing: 0.1em; }
+            .yuyu-video-layout { grid-template-columns: 1fr !important; }
+            .side-index { right: 15px; gap: 8px; }
+            .side-index .si-number { font-size: 1.4rem; }
+            .side-index .si-line { height: 25px; }
+            .side-index .si-label { font-size: 0.5rem; letter-spacing: 0.15em; }
+            .yuyu-video-layout { grid-template-columns: 1fr !important; }
+
+            .voice-slide { flex: 0 0 auto; width: 85vw; min-width: 300px; height: auto; min-height: 280px; padding: 25px 20px; }
+            .voice-slider { gap: 15px; }
+            .exp-card { flex: 0 0 90%; padding: 25px; }
+            .exp-card-desc { font-size: 0.85rem; }
+            .exp-slider { gap: 15px; }
+            .image-item img[style*="height"] { height: auto !important; min-height: 220px; }
+            .yy-item { width: 80vw; }
+            .h-gallery-item { width: 80vw; }
+            .horizontal-gallery { height: 55vh; min-height: 420px; }
+            .episode-card { padding: 30px 20px; }
+            .project-card { padding: 30px 20px; }
+            .cv-section { padding: 60px 30px; }
+            .field-notes { padding: 60px 30px; }
+            .audio-archive { padding: 60px 30px; }
+            .project1-hero, .project2-hero, .project5-hero { padding: 100px 30px 60px; }
+            .opening-text p { font-size: 0.95rem; }
+            .film-intro h3 { font-size: 1.6rem; }
+            .cover-title { font-size: 0.85rem; letter-spacing: 0.2em; }
+            .footer { padding: 60px 30px 40px; }
+            .footer-name { font-size: 1.5rem; }
+            .projects-nav { padding: 60px 30px; }
+            .projects-nav-header { margin-bottom: 40px; }
+            .section-title { font-size: 1.4rem; }
+            .image-grid-section { padding: 60px 30px; }
+            .video-section { padding: 0 30px 40px; }
+            .video-triple { padding: 0; }
+            .project-info-bar {
+                gap: 20px;
+            }
+        }
+    </style>
+<base target="_blank">
+<base target="_blank">
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-name">李源凯</div>
+    <div class="nav-links">
+        <a href="#cv">履历</a>
+        <a href="#projects">项目</a>
+        <a href="#footer">联系</a>
+    </div>
+</nav>
+
+<section class="cover" id="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-content">
+        <h1 class="cover-name">李源凯</h1>
+        <p class="cover-title">影视人类学作品集</p>
+    </div>
+    <div class="cover-scroll">向下滚动</div>
+</section>
+
+<section class="cv-section" id="cv">
+    <div class="cv-layout">
+        <div class="cv-photo">
+            <img src="./hn.jpg" alt="李源凯">
+        </div>
+        <div>
+            <p class="cv-label">关于</p>
+            <p class="cv-text">
+                李源凯，中共党员，2002年生于广东潮州，后成长于四川绵阳。<br>
+                天津师范大学播音与主持艺术、世界史双学位，<span class="cv-highlight">中央民族大学影视人类学硕士</span>在读。
+            </p>
+            <p class="cv-text">
+                曾获国家奖学金、王克昌奖学金、市级优秀学生、天津市高校资助育人宣传大使称号。<br>
+                本科阶段连续四年专业成绩与综合测评全系第一，累计志愿时长1179小时。
+            </p>
+            <p class="cv-text">
+                持有CET-6、播音员主持人资格证A级、教师资格证（中学语文/中职播音）。<br>
+                中国音乐学院社会艺术水平（朗诵 10 级、钢琴 10 级、美声 10 级）、青年艺术水平等级（国标舞 12 级）等证书。
+            </p>
+            <p class="cv-text">
+                田野足迹遍及甘孜藏区、贵州黔东南、北京皮村、大凉山彝区、青海同仁等地，以影像为方法探索文化深度与人性温度。<br>所作影片先后获得亚洲国际青年电影节最佳纪录短片提名、美国Global Film Exhibition最佳纪录长片、中国纪录片学院奖入围、西湖青年纪录片放映周最佳短纪录片等荣誉。
+            </p>
+
+            <p class="cv-label" style="margin-top: 50px;">实践经历</p>
+            <div class="exp-slider" id="expSlider">
+                <div class="exp-card">
+                    <p class="exp-card-year">2023</p>
+                    <p class="exp-card-title">哈佛 HSYLC 峰会</p>
+                    <p class="exp-card-role">Event Assistant</p>
+                    <p class="exp-card-desc">参与哈佛大学中美学生领袖峰会的活动策划与现场执行，协助组织跨文化交流工作坊，负责参会者的现场引导与活动流程协调，在国际化语境中锻炼了项目统筹与跨文化沟通能力。</p>
+                </div>
+                <div class="exp-card">
+                    <p class="exp-card-year">2023</p>
+                    <p class="exp-card-title">兴华公益基金会</p>
+                    <p class="exp-card-role">战委会会员 · 音视频运营统筹</p>
+                    <p class="exp-card-desc">作为战委会会员参与公益项目运营，负责音视频内容的策划、拍摄与统筹管理，以影像为媒介传递公益价值；同时深入山区助学项目走访调研，协助完成助学档案的建立与更新，在实践中理解了公益组织运作与基层教育的复杂性。</p>
+                </div>
+                <div class="exp-card">
+                    <p class="exp-card-year">2022 — 2023</p>
+                    <p class="exp-card-title">CETV 中国教育电视台</p>
+                    <p class="exp-card-role">启动仪式主持人</p>
+                    <p class="exp-card-desc">担任"用英语讲中国故事"全国赛事启动仪式的现场主持，负责台本撰写、嘉宾对接与现场调度。以中英文双语串联整场活动，在国家级媒体平台上完成了从撰稿到主持的全流程实践。</p>
+                </div>
+                <div class="exp-card">
+                    <p class="exp-card-year">2022</p>
+                    <p class="exp-card-title">CCTV 综合频道新媒体部</p>
+                    <p class="exp-card-role">平台账号运营</p>
+                    <p class="exp-card-desc">在中央广播电视总台综合频道新媒体部门实习，负责官方社交媒体账号的日常内容策划与发布，参与节目宣发物料的文案撰写与数据分析，熟悉了国家级媒体的内容生产流程与传播策略。</p>
+                </div>
+                <div class="exp-card">
+                    <p class="exp-card-year">2022</p>
+                    <p class="exp-card-title">上海浦东新区融媒体中心</p>
+                    <p class="exp-card-role">新闻栏目播音员</p>
+                    <p class="exp-card-desc">在区级融媒体中心担任新闻栏目播音工作，负责每日新闻的播报录制与稿件审校，深入了解了地方媒体的采编播一体化运作模式，积累了在正式播出环境下的语言表达与临场应变能力。</p>
+                </div>
+                <div class="exp-card">
+                    <p class="exp-card-year">2021</p>
+                    <p class="exp-card-title">湖南芒果 TV</p>
+                    <p class="exp-card-role">综艺项目剪辑 · 参与《乘风2024》S级综艺</p>
+                    <p class="exp-card-desc">参与芒果 TV 综艺节目后期剪辑，深度参与《乘风2024》S级综艺项目的素材整理、粗剪与精剪环节，在快节奏的制作周期中掌握了顶级综艺叙事节奏与视听语言的运用，对大众文化产品的生产机制有了切身的认识。</p>
+                </div>
+                <div class="exp-card">
+                    <p class="exp-card-year">2021</p>
+                    <p class="exp-card-title">北京三多堂传媒</p>
+                    <p class="exp-card-role">媒资管理 / 助剪</p>
+                    <p class="exp-card-desc">在国内知名纪录片制作公司三多堂传媒实习，负责媒体资产管理与纪录片辅助剪辑工作，接触了大型纪录片项目的素材整理、场记同步与初剪流程，由此奠定了对纪录片创作的初步理解。</p>
+                </div>
+            </div>
+            <div class="exp-dots" id="expDots">
+                <span class="exp-dot active" onclick="goToExp(0)"></span>
+                <span class="exp-dot" onclick="goToExp(1)"></span>
+                <span class="exp-dot" onclick="goToExp(2)"></span>
+                <span class="exp-dot" onclick="goToExp(3)"></span>
+                <span class="exp-dot" onclick="goToExp(4)"></span>
+                <span class="exp-dot" onclick="goToExp(5)"></span>
+                <span class="exp-dot" onclick="goToExp(6)"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="projects-nav" id="projects">
+    <div class="projects-nav-header">
+        <h2>项目导引</h2>
+        <p>各有侧重的影视人类学田野实践</p>
+    </div>
+    <div class="projects-grid">
+        <div class="project-card" onclick="document.getElementById('project1').scrollIntoView({behavior:'smooth'})">
+            <div class="project-card-number">01</div>
+            <h3 class="project-card-title">我们的流向</h3>
+            <p class="project-card-location">北京皮村 · 新工人文学小组</p>
+            <p class="project-card-desc">以空间危机为线索，记录劳动者在流动中用文字书写小我历史，用文化证明鲜活存在。</p>
+            <span class="project-focus">长期田野</span>
+        </div>
+        <div class="project-card" onclick="document.getElementById('project2').scrollIntoView({behavior:'smooth'})">
+            <div class="project-card-number">02</div>
+            <h3 class="project-card-title">新年可煞</h3>
+            <p class="project-card-location">甘孜稻城 · 俄牙同乡</p>
+            <p class="project-card-desc">43小时抢救性影像记录，探讨仪式如何作为"社会记忆"载体在现代性冲击下维系集体认同。</p>
+            <span class="project-focus">抢救性记录</span>
+        </div>
+        <div class="project-card" onclick="document.getElementById('project3').scrollIntoView({behavior:'smooth'})">
+            <div class="project-card-number">03</div>
+            <h3 class="project-card-title">行动在凉山</h3>
+            <p class="project-card-location">大凉山昭觉 · 玛薇社工服务中心</p>
+            <p class="project-card-desc">协助搜集困境儿童与非遗传承人信息，设置影像行动点位，组织彝族中学生拍摄家乡文化。</p>
+            <span class="project-focus">NGO社工服务 · 行动人类学</span>
+        </div>
+
+        <div class="project-card" onclick="document.getElementById('project4').scrollIntoView({behavior:'smooth'})">
+            <div class="project-card-number">04</div>
+            <h3 class="project-card-title">有鱼</h3>
+            <p class="project-card-location">大理南涧</p>
+            <p class="project-card-desc">追随90后女性多重身份切换，以布尔迪厄资本理论呈现县域中产者的悬浮生存。</p>
+            <span class="project-focus">中产阶级</span>
+        </div>
+        <div class="project-card" onclick="document.getElementById('project5').scrollIntoView({behavior:'smooth'})">
+            <div class="project-card-number">05</div>
+            <h3 class="project-card-title">燕园生境</h3>
+            <p class="project-card-location">北京大学</p>
+            <p class="project-card-desc">历时10-12个月记录校园四季，探讨社会-生态系统中微小行动如何引发管理系统与社区文化的改变。</p>
+            <span class="project-focus">生态人类学</span>
+        </div>
+        <div class="project-card" onclick="document.getElementById('project6').scrollIntoView({behavior:'smooth'})">
+            <div class="project-card-number">06</div>
+            <h3 class="project-card-title">更多作品</h3>
+            <p class="project-card-location">民族影像 · 实验纪录 · 跨界合作</p>
+            <p class="project-card-desc">《扎旺与普尺》《我去了外星球》《热贡六月生万物》及清华美院陶瓷系合作项目。</p>
+            <span class="project-focus">视野的多面性</span>
+        </div>
+    </div>
+</section>
+
+<section id="project1" class="project-section">
+    <div class="project1-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project1.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">01</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
+        <div class="opening-text">
+        </div>
+        <div class="project-info-bar">
+            <span>2025.01 — 2025.06</span>
+            <span>北京 · 皮村</span>
+            <span>民族志纪录片</span>
+            <span>独立影像</span>
+        </div>
+        <div class="film-intro">
+            <h3>我们的流向</h3>
+            <p class="en-title">The Journey of Immigrant Worker</p>
+            <p>
+                2025年6月，北京皮村新工人文学小组将面临他们的第二次搬迁。影片以这场熟悉而紧迫的空间危机为线索，从杏树追忆、下河捞车、侧街找房等场景中记录小组成员们历时半年的自我建构。
+            </p>
+            <p>
+                影片同时着眼时代变迁下"新工人"定义边界的扩张——它不再仅仅指向传统的农村户籍进城务工者，还包含如今那些失去原有社会位置、于城市边缘重新定位身份的人们。
+            </p>
+            <p class="quote">
+                "我们是矿工、家政工、泥瓦匠、育儿嫂、机械工人……也是用汗水、用厄运、用顽强、用永不低头的力量书写诗歌的人。"
+            </p>
+        </div>
+    </div>
+
+    <div class="video-section">
+        <div class="video-container">
+            <div>
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1Jyo1BuE7s&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <p class="video-caption">预告片 · 《相聚在皮村》文学小组十周年之歌</p>
+            </div>
+            <div>
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116477365585642&bvid=BV1J1o1BBEEk&cid=37886363893&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <p class="video-caption">杏树下 · 我们的十年追忆活动</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-grid-section">
+        <div class="section-header">
+            <p class="section-label">影像切片</p>
+            <h2 class="section-title">我在场 我参与</h2>
+        </div>
+        <div class="grid-3-narrow">
+            <div class="image-item">
+                <img src="./p1小海捞车.jpg" alt="小海捞车" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">执念 · 沉车</p>
+                    <p class="image-desc">小海的三轮车意外坠江，他执意下水捞车。"我抱着沉车，就想到当年尼采抱着都灵之马那样，想哭。"</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p2杏树下活动.jpg" alt="杏树下活动" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">根系 · 十年</p>
+                    <p class="image-desc">组织策划"杏树下·我们的十年"追忆活动，在打工博物馆拆迁处依杏树席地而坐，夜色下朗诵诗歌。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p3搬运白菜.jpg" alt="搬运白菜" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">在场 · 劳作</p>
+                    <p class="image-desc">参与劳作，搬运白菜。镜头内外的身份不断切换，参与式观察的伦理时刻。</p>
+                </div>
+            </div>
+        </div>
+        <div class="grid-3">
+            <div class="image-item">
+                <img src="./p4.产品图.png" alt="周边产品" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">物证 · 生计</p>
+                    <p class="image-desc">拍摄文学小组周边产品，运营的重要收入来源。帆布包上印着"走在路上，我咬着希望"。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p5影音留存.png" alt="历史音像" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">打捞 · 记忆</p>
+                    <p class="image-desc">组织历史音像整理留存，打捞即将消散的集体记忆。工友之家影像资料共61个文件。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p6纪录片海报.jpg" alt="纪录片海报" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">流向 · 记录</p>
+                    <p class="image-desc">《我们的流向》纪录片海报。在流动中用文字书写小我历史，用文化证明自己正鲜活地存在。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field-notes">
+        <div class="notes-container">
+            <div class="section-header">
+                <p class="section-label">田野笔记</p>
+                <h2 class="section-title">从参与到反身</h2>
+            </div>
+            <div class="note-block">
+                <div class="note-label">空间</div>
+                <p>
+                    皮村文学小组成立于2014年，十年间在打工博物馆原址生长。2023年博物馆拆迁后，迁入同心实验学校"共享厨房"继续授课。2025年6月，学校租期将至，他们将面临第二次搬迁。我进入时，他们正在废墟与临时空间之间重建日常。一个文学小组的物理空间可以两次消失，<span style="color: var(--accent); font-weight: 500;">但每周六晚上的朗读声从未中断——这让我意识到，人类学所谓的"田野"有时不是地理坐标，而是一群人共同维持的节律。</span>
+                </p>
+            </div>
+            <div class="note-block">
+                <div class="note-label">方法</div>
+                <p>
+                    我并非隐形观察者。我参与劳动、拍摄周边产品、整理历史音像——镜头内外的身份不断切换。有一次我在摊位上帮着卖帆布包，顾客问我："你也是打工的？"我愣住，才发现"参与"早已越过观察的边界。影视人类学常说"反身性"，但真正的反身性不是事后写进论文的忏悔，而是你在按下录制键的瞬间，突然意识到自己正在改变事件的流向。
+                </p>
+            </div>
+            <div class="note-block">
+                <div class="note-label">追问</div>
+                <p>
+                    小海的三轮车坠江，他执意下水捞车。我在岸上举着相机，没有阻止，也无法阻止。后来他说："我抱着沉车，就想到当年尼采抱着都灵之马那样，想哭。"<span style="color: var(--accent); font-weight: 500;">那一刻我突然明白，镜头从来不是中立的眼睛，它是第三只手——它触碰什么，什么就会变形。</span>我留下的影像，究竟是见证了他们的坚韧，还是消费了他们的狼狈？这个问题我没有答案，只能把它留在片子里，交给观众。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="audio-archive" style="padding: 60px 0 80px;">
+        <div class="audio-container" style="padding: 0;">
+            <div class="audio-intro" style="padding: 0 60px;">
+                <p class="section-label">声音档案</p>
+                <h2 class="section-title">田野中的声音</h2>
+                <p>
+                    以下声音来自我的田野录音与阅读。我记录了他们，他们也在某种程度上重塑了我。
+                </p>
+            </div>
+            <div class="voice-slider" id="voiceSlider">
+                <div class="voice-slide">
+                    <p>"诗歌它对我，它不是娱乐，不是消遣，它是武器，让我开山劈路的……因为在车间，我真的不知道我是在创造价值还是制造垃圾，所以我那时候是每天都得写，哪怕写的不好，我要是一天没写觉得自己白活了。"</p>
+                    <p class="voice-source">—— 小海，新工人诗人</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"我穿过昨夜的城市，吐出那枚铁做的月亮……献给失业了半个月的四川小王、河南老李，献给因为工伤骨折的会拉二胡的安徽木匠刘师傅，献给工资税减后交不起房贷车贷年轻的打工人，献给一无所有一事无成的像我们这样的大龄失败者。"</p>
+                    <p class="voice-source">—— 许多，谷仓乐队，《返乡青年》歌词</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"露天电影往那一拉，大家就都出门了。孩子们在一起可以玩，大人可以陪着。那样才是真正的生活，鲜活的生活，有尊严的生活。"</p>
+                    <p class="voice-source">—— 沈金花，同心学校校长</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"夜晚真是太好了。卸下一天的负累，洗去身上的疲惫，躺在床上，整个世界属于我。只有在黑夜里，我才是真实的自己。"</p>
+                    <p class="voice-source">—— 梦雨（李文丽），家政工，诗人 / 画家</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"活着就要做点和吃饭无关的事，满足一下自己的精神欲望。一本书读完可能很快就忘干净了，好比竹篮打水一场空，但是竹篮经过一次次水的洗礼，会一次比一次干净。"</p>
+                    <p class="voice-source">—— 范雨素，家政工，中国作家协会会员</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"这个博物馆是我工作了15年的地方。我从一个17岁的小姑娘不满18岁来到了皮村，然后在这个地方工作，认识了我老公，生了俩孩子，一直到现在32岁。这个博物馆和这个机构，给了我很多很多很多的回忆。"</p>
+                    <p class="voice-source">—— 小付，文学小组召集人</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"普法战争时期，德国占领法国一个地方，都德写了《最后一课》。如果咱们也叫'最后一课'，就感觉到有点太悲情了。所以还是回到鲁迅，讲1936年，母亲去世前的一夜。"</p>
+                    <p class="voice-source">—— 张慧瑜，北京大学研究员，文学小组志愿讲师</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"一个月休息两天……上周六是吴老师最后一次课了……我忘了打伞了，下了班换了衣服赶快就走……雨越下越大，我就跑起来一直跑一直跑……傅老师看见我进来了，赶快让我坐在那块，又回来给我拿了纸巾，让我擦脸上的雨水。"</p>
+                    <p class="voice-source">—— 王宽芳，清洁工，文学小组成员</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"我没苦难啊。我的苦难，我都推到别人身上去了嘛。我刚去参加了一个腾讯组织的脱口秀节目，为什么我去参加那个脱口秀？也就是打破这些人对家政工的刻板印象。"</p>
+                    <p class="voice-source">—— 施洪丽，家政工，文学小组成员</p>
+                </div>
+                <div class="voice-slide">
+                    <p>"家政工作是我们的一种职业，但是它不是我们的生活，我们也应该有我们自己的生活。我们的出外学习、沟通、个人社交，我们应该也有跟这个世界、跟这个社会沟通接触的机会。"</p>
+                    <p class="voice-source">—— 阿蔚，家政工，漫画家，文学小组成员</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<div class="project-divider"></div>
+
+<section id="project2" class="project-section">
+    <div class="project2-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project2.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">02</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
+        <div class="opening-text">
+        </div>
+        <div class="project-info-bar">
+            <span>2025.01.24 — 02.02</span>
+            <span>甘孜 · 俄牙同乡</span>
+            <span>民族志档案</span>
+            <span>独立影像</span>
+        </div>
+        <div class="film-intro">
+            <h3>新年可煞</h3>
+            <p class="en-title">New Year Kasha</p>
+            <p>
+                "可煞"（藏语，意为新年吐槽会）是稻城县俄牙同乡藏族独特的新年习俗，包含邻里转转饭"每仨美"、锅庄舞会"黑场"、吐槽大会"可煞"等社群活动。随着城市化与年轻一代外出务工，这一从未被系统性记录的习俗面临断代风险。
+            </p>
+            <p>
+                影片完整记录2025年春节期间的仪式全过程，从人类学视角探讨仪式如何作为"社会记忆"载体在现代性冲击下维系集体认同，以及城乡流动背景下"家"与"故乡"的意义重构。
+            </p>
+        </div>
+        <div class="quant-bar">
+            <div class="quant-item">
+                <span class="quant-number">10</span>
+                <span class="quant-label">天田野周期</span>
+            </div>
+            <div class="quant-item">
+                <span class="quant-number">43</span>
+                <span class="quant-label">小时影像素材</span>
+            </div>
+            <div class="quant-item">
+                <span class="quant-number">6</span>
+                <span class="quant-label">类核心仪式</span>
+            </div>
+            <div class="quant-item">
+                <span class="quant-number">4</span>
+                <span class="quant-label">个村落</span>
+            </div>
+            <div class="quant-item">
+                <span class="quant-number">3</span>
+                <span class="quant-label">代同堂观察</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="field-notes">
+        <div class="notes-container">
+            <div class="section-header">
+                <p class="section-label">核心发现</p>
+                <h2 class="section-title">田野议题</h2>
+            </div>
+            <div class="note-block">
+                <div class="note-label">可煞 · 未被书写的吐槽仪式</div>
+                <p>
+                    "可煞"（ka sha）是川滇交界康巴藏区独有的社群仪式，"ka"为嘴，"sha"为吐槽。大年三十至初三，四家一组轮流宴请全组，席间以藏语即兴编词互相调侃，伴有碟版与对唱版锅庄。这一仪式从未被系统记录，年轻一代外出务工后，即兴编词能力急剧退化。当我试图用镜头捕捉"可煞"时，发现最难拍的不是动作，而是那种"彼此熟知到可以互相冒犯"的社群密度——这种密度正在消失，我的相机或许是在为即将消失的东西举行葬礼。
+                </p>
+            </div>
+            <div class="note-block">
+                <div class="note-label">煨桑 · 政策与信仰的协商</div>
+                <p>
+                    2019年木里山火后，森林防火期全面禁火。原本以生火供奉为核心的煨桑仪式，简化为挂经幡与撒隆达。牙垭村更约定"女性不参与煨桑"，每家派男性代表前往神山。我注意到，当舅舅们在无火的水泥煨灶旁围坐敬酒时，他们仍在绕圈，只是绕的是"缺席的火"。传统并未被政策杀死，而是学会了与政策共生——这种"协商中的延续"，比原教旨式的保存更让我震动。
+                </p>
+            </div>
+            <div class="note-block">
+                <div class="note-label">时间 · 藏汉历法的碰撞</div>
+                <p>
+                    2025—2029年连续农历小月，藏历春节整体"推迟一天"。腊月廿九成为"各然"（扫除日），除夕变为煨桑日，大年初一的汉族春节与藏族除夕重叠。村民在团圆饭上互道"扎西德勒"同时回微信红包。我原以为会看到文化冲突，实际看到的却是"时间的层叠"——他们同时在两套历法里生活，并不焦虑，就像一个人同时说两种方言，哪句顺手用哪句。
+                </p>
+            </div>
+            <div class="note-block">
+                <div class="note-label">转转饭 · 社交网络的年度确认</div>
+                <p>
+                    "每仨美"（muei）是大年初一起3—4家组成小队，轮流供饭三日。这不仅是食物交换，更是家族网络的年度确认。随着牙垭村合并（原分队制取消），转转饭从"队"转向"亲"。我作为"干儿子"被格桑阿姨介绍给邻里时，突然意识到：人类学所谓的"进入田野"，有时候就是一顿饭、一碗酒、一个被临时赋予的亲属称谓。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="diary-timeline">
+        <div class="section-header">
+            <p class="section-label">田野切片</p>
+            <h2 class="section-title">日记时间线</h2>
+        </div>
+
+        <div class="diary-slider-container">
+            <div class="diary-slider">
+
+                <div class="diary-slide">
+                    <div class="diary-slide-header">
+                        <span class="diary-slide-day">24</span>
+                        <span class="diary-slide-meta">2025.01 · 晴 · 初入</span>
+                    </div>
+                    <h4>初入俄牙同乡：被赋予的亲属位置</h4>
+                    <p>绕行1500公里抵达牙垭村。格桑志玛阿姨上车前跪地转经桶，祷词五句，一路小声叨念。路过俄亚大村，高碑写着"中国仅有，世界唯一"——那种不同于城镇关系的田野气息，在十弯山路的尽头扑面而来。</p>
+                    <p class="highlight">"这个家的名字叫'西红'。'家'可以指地理，也可以指家族。当格桑阿姨向菜集的人介绍我是她'干儿子'时，我突然获得了进入田野的通行证——不是学生证，而是亲属称谓。"</p>
+                </div>
+
+                <div class="diary-slide">
+                    <div class="diary-slide-header">
+                        <span class="diary-slide-day">26</span>
+                        <span class="diary-slide-meta">2025.01 · 雨夹雪 · 杀猪</span>
+                    </div>
+                    <h4>杀猪日与镜头反思：100条素材后的空虚</h4>
+                    <p>第一次见杀年猪，一上午拍了100多条素材。但除了参与者是藏人，处理肉的方法与汉族差异不大。真正让我停下的，是四郎拒绝我拍他唱rap的瞬间——我一度认为这是他需要"克服的镜头恐惧"，后来才意识到，那是我的"奇观化"冲动在作祟。</p>
+                    <p class="highlight">"年轻一代在二老面前high歌，何尝不是一种'人类学奇观'？那一时段我被符号裹挟。田野中最难克服的，不是语言障碍，而是你以为自己比当地人更知道什么值得被记录。"</p>
+                </div>
+
+                <div class="diary-slide">
+                    <div class="diary-slide-header">
+                        <span class="diary-slide-day">28</span>
+                        <span class="diary-slide-meta">2025.01 · 小雪 · 各然</span>
+                    </div>
+                    <h4>各然除夕：时间的层叠与眼泪</h4>
+                    <p>连续五年农历小月，藏历春节推迟一天。腊月廿九成了"各然"扫除日，村民在团圆饭上互道"扎西德勒"同时回微信红包。我注意到柴火灶换成了无烟钢灶，审批后还可砍伐新木装点屋舍——传统与便利并不矛盾，它们只是换了相处的方式。</p>
+                    <p class="highlight">"日日年年不变的是什么？是藏民对彼此间真挚而丰沛的友爱与关切。我眼泪止不住。没有人提，也不知道有无人注意。"</p>
+                </div>
+
+                <div class="diary-slide">
+                    <div class="diary-slide-header">
+                        <span class="diary-slide-day">29</span>
+                        <span class="diary-slide-meta">2025.01 · 晴 · 煨桑</span>
+                    </div>
+                    <h4>煨桑简化：缺席的火与性别边界</h4>
+                    <p>舅舅吹响螺号五下，持咒与撒大麦交替进行。不让拍。上山的路上，格桑阿姨穿着睡衣说"煨桑只能男娃娃去"。我问为何神山是神山，为何女性不参与——得到的回答是："每个村都有自己的神山，每座神山也有自己的约定。"</p>
+                    <p class="highlight">"曾经会绕火正三圈逆一圈，现在无火，三圈围坐的人们互相唠嗑敬酒即可散了。他们在绕的，是'缺席的火'。"</p>
+                </div>
+
+                <div class="diary-slide">
+                    <div class="diary-slide-header">
+                        <span class="diary-slide-day">01</span>
+                        <span class="diary-slide-meta">2025.02 · 晴 · 可煞</span>
+                    </div>
+                    <h4>可煞与锅庄：当礼仪褪去</h4>
+                    <p>五个小时吃了五顿饭，每顿大麦酒无限续杯。终于见到"可煞"——吐槽大会。年轻一辈把"微信"直接用四川话带过，正式说法里才字字对应翻译。这种"双语切换"不是语言能力问题，而是两套生活逻辑的自然选择。</p>
+                    <p class="highlight">"当礼仪褪去，你成了更日常而不需要被强调和关照的存在，或许是一次田野生命真正的开始。小孩问我：'我想看看你家乡的照片。'我迟迟拿不出——原来我少拍了最重要的东西。"</p>
+                </div>
+
+            </div>
+
+            <div class="diary-dots">
+                <span class="diary-dot active" onclick="goToSlide(0)"></span>
+                <span class="diary-dot" onclick="goToSlide(1)"></span>
+                <span class="diary-dot" onclick="goToSlide(2)"></span>
+                <span class="diary-dot" onclick="goToSlide(3)"></span>
+                <span class="diary-dot" onclick="goToSlide(4)"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-grid-section">
+        <div class="section-header">
+            <p class="section-label">影像切片</p>
+            <h2 class="section-title">在场与观察</h2>
+        </div>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="./p7俄牙同乡.jpg" alt="俄牙同乡">
+                <div class="image-overlay">
+                    <p class="image-tag">路途 · 交界</p>
+                    <p class="image-desc">川滇交界的十弯山路，沿途石土混着雨水在鞋下作响。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p8藏民家居.JPG" alt="藏民家居">
+                <div class="image-overlay">
+                    <p class="image-tag">空间 · 经堂</p>
+                    <p class="image-desc">西红家的经堂，东北面墙壁上的唐卡：喜金刚、金刚亥母、莲花生。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p9藏民家庭.jpg" alt="藏民家庭">
+                <div class="image-overlay">
+                    <p class="image-tag">家族 · 西红</p>
+                    <p class="image-desc">三代同堂：外公仁青多吉、外婆泽仁拥忠、舅舅多吉泽仁。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p10与藏民合照.jpg" alt="与藏民合照">
+                <div class="image-overlay">
+                    <p class="image-tag">参与 · 在场</p>
+                    <p class="image-desc">与西红一家的合影，被临时赋予"干儿子"的亲属称谓。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p11影像切片1.png" alt="煨桑仪式">
+                <div class="image-overlay">
+                    <p class="image-tag">仪式 · 煨桑</p>
+                    <p class="image-desc">无火的水泥煨灶旁，舅舅们围坐敬酒，绕的是"缺席的火"。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./p12影像切片2.jpg" alt="可煞活动">
+                <div class="image-overlay">
+                    <p class="image-tag">聚会 · 可煞</p>
+                    <p class="image-desc">四家一组轮流宴请全组，即兴编词互相调侃。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="project-divider"></div>
+
+<section id="project3" class="project-section">
+
+    <div class="project1-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project3.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">03</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
+        <div class="opening-text">
+        </div>
+        <div class="project-info-bar">
+            <span>2025.07.24 — 08.06</span>
+            <span>凉山 · 昭觉</span>
+            <span>NGO社工服务 · 行动人类学</span>
+            <span>玛薇社工发展中心出品</span>
+        </div>
+        <div class="film-intro">
+            <h3>行动在凉山</h3>
+            <p class="en-title">Empowerment in Liangshan</p>
+            <p>
+                协助玛薇社工发展中心搜集困境儿童与非遗传承人信息，设置社区影像行动点位，组织彝族中学生拍摄家乡文化，探索从"协助"到"赋权"的行动人类学路径。
+            </p>
+            <p>
+                影像赋权不是施舍镜头，而是把观看的权力交还给被观看的人。当彝族中学生开始记录自己的毕摩、自己的花海、自己的苦荞收割，人类学才真正从"关于他们的知识"变成"他们自己的知识"。
+            </p>
+            <p class="quote">
+                "我是最反对彝族研究生回来研究本民族，本民族的人应该回来投入建设"——侯远高
+            </p>
+        </div>
+    </div>
+
+
+    <div class="video-section" style="background: var(--bg-warm); padding: 60px;">
+        <div class="video-triple">
+            <div>
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1zKo1BNEjm&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <p class="video-caption" style="color: #666;">大凉山艺术乡建与研学基地</p>
+            </div>
+            <div>
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1JPo1BqExu&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <p class="video-caption" style="color: #666;">觉呷草原</p>
+            </div>
+            <div>
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?bvid=BV1BKo1BNESf&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <p class="video-caption" style="color: #666;">迪曲花海</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="juxtaposition-container">
+
+        <div class="data-archive">
+            <div class="archive-header">
+                <p class="archive-label">田野档案</p>
+                <h4>双重田野</h4>
+            </div>
+            <div class="data-block">
+                <p class="data-title">困境儿童调查</p>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <span class="data-number">59</span>
+                        <span class="data-unit">户有效案例</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-number">238</span>
+                        <span class="data-unit">名困境儿童</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-number">64%</span>
+                        <span class="data-unit">单亲家庭</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-number">4</span>
+                        <span class="data-unit">个乡13村</span>
+                    </div>
+                </div>
+                <p class="data-note">覆盖4个乡，13个村落。种植玉米、荞麦、土豆，收成仅够自给。</p>
+            </div>
+
+            <div class="data-block">
+                <p class="data-title">非遗传承人谱系</p>
+                <div class="data-grid">
+                    <div class="data-item">
+                        <span class="data-number">26</span>
+                        <span class="data-unit">位传承人</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-number">50.2</span>
+                        <span class="data-unit">岁平均年龄</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-number">11.5%</span>
+                        <span class="data-unit">30岁以下</span>
+                    </div>
+                    <div class="data-item">
+                        <span class="data-number">14</span>
+                        <span class="data-unit">代毕摩传承</span>
+                    </div>
+                </div>
+                <p class="data-note">毕摩10人，手工艺人9人，刺绣3人，德古3人。吉克木呷技艺传承至第15代。</p>
+            </div>
+
+            <div class="concept-cards">
+                <div class="concept-card">
+                    <p class="concept-yi">玛薇</p>
+                    <p class="concept-cn">高山杜鹃</p>
+                    <p class="concept-en">昭觉最集中</p>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-yi">克哲</p>
+                    <p class="concept-cn">即兴说唱</p>
+                    <p class="concept-en">押韵与诗意</p>
+                </div>
+                <div class="concept-card">
+                    <p class="concept-yi">德古</p>
+                    <p class="concept-cn">习惯法调解</p>
+                    <p class="concept-en">社区长老</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-poetry">
+            <div class="poetry-header">
+                <p class="poetry-label">影像并置</p>
+                <h4>凉山七月 · 苦荞熟了</h4>
+            </div>
+
+            <div class="xiaohongshu-hero">
+                <img src="./ls10.jpg" alt="凉山七月苦荞熟了">
+                <div class="xiaohongshu-caption">
+                    <p class="xhs-quote">"要把裤脚塞进袜筒，以免秆尖挂腿"</p>
+                    <p class="xhs-text">彝家子女两两相对，木叉扬落。苦荞籽粒坠进竹席，秆子也渐渐垒成小山。木棍与荞粒的一起一落如呼吸，就是山野里最朴素的丰收，土地自己就是最好的伴奏。</p>
+                    <p class="xhs-text">"苦荞是救命粮，养硬了山里人的骨头"——苦荞从不在乎谁看它，贫瘠处扎下根，烈日里爆开壳，用最安静的姿态，发出最响亮的生命回声。凉山的魂，就在这金色碎粒的倔强里。</p>
+                    <div class="xhs-meta">
+                        <span>小红书 · 淮年来了</span>
+                        <span>106赞 · 33收藏 · 7评论</span>
+                        <span>2025-08-06</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="horizontal-gallery-section">
+        <p class="gallery-section-label">影像切片 · 16帧</p>
+        <div class="horizontal-gallery">
+            <div class="h-gallery-item">
+                <img src="./ls1.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls2.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls3.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls4.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls5.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls6.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls7.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls8.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls9.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls11.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls12.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls13.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls14.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls15.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls16.jpg" alt="">
+            </div>
+            <div class="h-gallery-item">
+                <img src="./ls17.jpg" alt="">
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="project-divider"></div>
+
+<div class="project-divider"></div>
+
+<section id="project4" class="project-section">
+    <div class="project1-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project4.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">04</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
+        <div class="opening-text">
+        </div>
+        <div class="project-info-bar">
+            <span>2025年暑期</span>
+            <span>大理 · 南涧</span>
+            <span>纪录短片</span>
+            <span>清华大学影视传播研究中心出品</span>
+        </div>
+        <div class="film-intro">
+            <h3>有鱼</h3>
+            <p class="en-title">Year after Year</p>
+            <p>
+                鱼市摊主，时装店主，文化博主，几个迥异的身份标签共同拼贴出当下中国县域中产者的典型面貌。镜头追随来自大理南涧的90后女性谷海萍，记录了她在时代浪潮中捕捉每一个机会的故事。
+            </p>
+            <p>
+                她以惊人的自我剥削，在"债务-投资"的循环中不停奔跑，试图将携有鱼腥味的经济资本，兑换成抖音账号里的文化资本与企业家网络中的社会资本。而这些碎片化的场景并非关于"逆袭"的神话，而是关于中产者"悬浮"状态下具体的生存策略。
+            </p>
+            <p class="quote">
+                在人口流失与产业转型的宏大叙事下，个体所有的努力，往往并非为了攀升，而只是为了维系一种"不下滑"的脆弱平衡。
+            </p>
+        </div>
+    </div>
+
+    <div class="video-section" style="background: var(--bg-dark); padding: 0 60px 80px;">
+        <div class="yuyu-video-layout">
+            <div>
+                <img src="./yuyu-poster.jpg" alt="有鱼海报" style="width: 100%; height: auto; display: block;">
+            </div>
+            <div>
+                <div class="video-wrapper">
+                    <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=116478321952354&bvid=BV1gkoyBQEjD&cid=37892458535&p=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
+                </div>
+                <p class="video-caption">片花 · Year after Year</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="image-grid-section">
+        <div class="section-header">
+            <p class="section-label">三重身份</p>
+            <h2 class="section-title">小谷的切片</h2>
+        </div>
+        <div class="grid-3-narrow">
+            <div class="image-item">
+                <img src="./yuyu-still1.jpg" alt="鱼市摊主" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">鱼市 · 凌晨四点</p>
+                    <p class="image-desc">"你要不要鱼"——16岁开始吆喝，杀鱼后手都烂掉破掉。动作干练，鱼拿在手里就知道重量。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./yuyu-still2.jpg" alt="时装店主" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">服装店 · 阶层跃迁</p>
+                    <p class="image-desc">"曾经干净的衣服都不能穿，开了服装店后，他们对我更好了。"靠租金和药店逐步积累。</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./yuyu-still3.jpg" alt="文化博主" style="height: 300px;">
+                <div class="image-overlay">
+                    <p class="image-tag">自媒体 · 新南涧人</p>
+                    <p class="image-desc">穿着彝族服饰，凌晨4点出现在南涧街头反复练习口播。"给我一点时间，我应该可以做到。"</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="image-grid-section" style="background: var(--bg-warm);">
+        <div class="section-header">
+            <p class="section-label">田野互惠</p>
+            <h2 class="section-title">影像作为方法</h2>
+        </div>
+        <div style="max-width: 900px; margin: 0 auto 40px; text-align: center;">
+            <a href="https://www.douyin.com/jingxuan/search/%E5%8D%97%E6%B6%A7%E5%8E%BF%E7%BE%8E%E5%A5%BD%E6%8E%A8%E8%8D%90%E7%AE%A1?aid=69b1f7e6-4271-4d28-a770-f7ee61e858e4&modal_id=7540996731493207354&type=general" target="_blank" style="text-decoration: none; display: inline-block;">
+                <div style="display: inline-flex; align-items: center; gap: 12px; background: rgba(139,115,85,0.08); border: 1px solid var(--border); border-radius: 50px; padding: 14px 32px; transition: all 0.3s;">
+                    <span style="font-size: 1rem;">▶</span>
+                    <span style="font-size: 0.85rem; color: #555; letter-spacing: 0.05em;">小谷抖音视频 · 南涧县美好推荐官 · 600+赞</span>
+                </div>
+            </a>
+        </div>
+        <div style="max-width: 900px; margin: 0 auto 50px; text-align: center;">            <p style="font-size: 1.05rem; line-height: 2; color: #555; font-style: italic; font-family: var(--font-serif);">
+                "田野行至大理南涧瓦折村，偶遇一对健谈夫妻。闲聊间，阿爷说俩人领证后从未办过婚礼，我们同行几人当即下村路、租婚服。在太阳落山前，在群山见证下，寥寥几次快门，便补齐了一件四十年的遗憾。"
+            </p>
+        </div>
+        <div class="image-grid grid-4">
+            <div class="image-item">
+                <img src="./yuyu-wedding1.jpg" alt="老人婚礼1" style="width: 100%; height: auto; display: block;">
+                <div class="image-overlay" style="padding: 30px 15px 15px;">
+                    <p class="image-tag">瓦折村 · 群山</p>
+                    <p class="image-desc" style="font-size: 0.8rem;">下村路，租婚服，太阳落山前</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./yuyu-wedding2.jpg" alt="老人婚礼2" style="width: 100%; height: auto; display: block;">
+                <div class="image-overlay" style="padding: 30px 15px 15px;">
+                    <p class="image-tag">婚服 · 四十年</p>
+                    <p class="image-desc" style="font-size: 0.8rem;">领证后从未办过婚礼</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./yuyu-wedding3.jpg" alt="老人婚礼3" style="width: 100%; height: auto; display: block;">
+                <div class="image-overlay" style="padding: 30px 15px 15px;">
+                    <p class="image-tag">快门 · 遗憾</p>
+                    <p class="image-desc" style="font-size: 0.8rem;">寥寥几次快门</p>
+                </div>
+            </div>
+            <div class="image-item">
+                <img src="./yuyu-wedding4.jpg" alt="老人婚礼4" style="width: 100%; height: auto; display: block;">
+                <div class="image-overlay" style="padding: 30px 15px 15px;">
+                    <p class="image-tag">补齐 · 圆满</p>
+                    <p class="image-desc" style="font-size: 0.8rem;">一件四十年的遗憾</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+<div class="project-divider"></div>
+
+<section id="project5" class="project-section">
+    <div class="project5-hero" style="position: relative; overflow: hidden; background-image: url('./bg-project5.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index">
+            <div class="si-number">05</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
+        <div class="opening-text">
+        </div>
+        <div class="project-info-bar">
+            <span>2025-2026年</span>
+            <span>海淀 · 北京大学</span>
+            <span>生态人类学纪录片</span>
+            <span>北京大学博古睿研究中心出品</span>
+        </div>
+        <div class="film-intro">
+            <h3>燕园生境</h3>
+            <p class="en-title">Habitat of Yanyuan</p>
+            <p>
+                北京大学作为一个社会-生态系统实验场，已记录超过600种高等植物、240多种鸟类。本项目以北京大学校园为核心场域，但目标并非拍摄一部风光片或物种科普片，而是致力于记录并诠释一种正在发生的"现代共生实践"——在高度人工化的城市与学术空间内，人如何通过科学、治理与社区行动，与其它生命重建联结、协商空间并共同演化。
+            </p>
+            <div style="margin-top: 40px; display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+                <span style="font-size: 0.7rem; letter-spacing: 0.15em; color: #888;">联合出品</span>
+                <span style="display: inline-block; background: rgba(139,115,85,0.15); border: 1px solid rgba(139,115,85,0.35); border-radius: 50px; padding: 10px 24px; font-size: 0.8rem; color: #c9b896; letter-spacing: 0.05em;">山水自然保护中心</span>
+                <span style="display: inline-block; background: rgba(139,115,85,0.15); border: 1px solid rgba(139,115,85,0.35); border-radius: 50px; padding: 10px 24px; font-size: 0.8rem; color: #c9b896; letter-spacing: 0.05em;">北大绿色生命协会</span>
+                <span style="font-size: 0.75rem; color: #8b7355; letter-spacing: 0.1em;">预计拍摄至2026年秋季</span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="episode-cards">
+        <div class="section-header">
+            <p class="section-label">三集结构</p>
+            <h2 class="section-title">行动闭环</h2>
+        </div>
+        <div class="episodes-grid">
+            <div class="episode-card">
+                <div class="episode-number">01</div>
+                <h4 class="episode-title">看见</h4>
+                <p class="episode-subtitle">重建附近的起点</p>
+                <p class="episode-desc">
+                    共生始于看见。真正的"附近"，是能叫出名字、知晓习性的生命。跟随学生监测员，学习如何"看"校园——从辨认物种，到记录行为，再到发现危机。
+                </p>
+            </div>
+            <div class="episode-card">
+                <div class="episode-number">02</div>
+                <h4 class="episode-title">设计</h4>
+                <p class="episode-subtitle">厘米之间的善意</p>
+                <p class="episode-desc">
+                    共生需要设计。好的设计，是基于理解的、充满善意的微小干预。跟踪一个具体的校园改造项目：从监测数据中定位问题，设计解决方案，并与管理部门沟通协作实施。
+                </p>
+            </div>
+            <div class="episode-card">
+                <div class="episode-number">03</div>
+                <h4 class="episode-title">共生</h4>
+                <p class="episode-subtitle">系统与传承</p>
+                <p class="episode-desc">
+                    共生是系统的改变与价值的传承。它改变生态，也改变人。探讨微小行动如何引发管理系统乃至社区文化的改变，以及这种实践如何被传递。
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="yy-gallery">
+        <p class="yy-gallery-label">影像切片 · 6帧</p>
+        <div class="yy-horizontal">
+            <div class="yy-item">
+                <img src="./yy1.png" alt="">
+            </div>
+            <div class="yy-item">
+                <img src="./yy2.png" alt="">
+            </div>
+            <div class="yy-item">
+                <img src="./yy3.png" alt="">
+            </div>
+            <div class="yy-item">
+                <img src="./yy4.png" alt="">
+            </div>
+            <div class="yy-item">
+                <img src="./yy5.png" alt="">
+            </div>
+            <div class="yy-item">
+                <img src="./yy6.png" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="project-divider"></div>
+
+<section id="project6" class="project-section">
+    <div style="background-image: url('./bg-project6.jpg'); background-size: cover; background-position: center center; color: var(--text-light); padding: 100px 60px 50px; text-align: center; position: relative; overflow: hidden;">
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg, rgba(26,26,26,0.82) 0%, rgba(26,26,26,0.88) 50%, rgba(26,26,26,0.82) 100%);z-index:0;pointer-events:none;"></div>
+        <div class="side-index" style="right: 25px;">
+            <div class="si-number">06</div>
+            <div class="si-line"></div>
+            <div class="si-label">PROJECT</div>
+        </div>
+        <div style="position:relative; z-index:1;">
+            <p style="font-size: 0.7rem; letter-spacing: 0.3em; color: #666; margin-bottom: 20px;">更多作品 · MORE WORKS</p>
+        <h2 style="font-family: var(--font-serif); font-size: 2.2rem; font-weight: 400; margin-bottom: 12px;">视野的多面性</h2>
+        <p style="font-size: 0.85rem; color: #888; max-width: 600px; margin: 0 auto 8px; font-style: italic;">Multi-faceted Perspectives</p>
+        <p style="font-size: 0.9rem; color: #888; max-width: 600px; margin: 0 auto;">从民族影像到实验纪录，从田野合作到跨界实践</p>
+    </div>
+
+    <div style="padding: 60px; background: var(--bg-dark);">
+        <div class="grid-4-wrap">
+
+            <div style="background: white; border: 1px solid var(--border); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.borderColor='#8b7355';this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='#e0ddd5';this.style.transform='translateY(0)';">
+                <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2022 · 西藏日喀则南木林</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">扎旺与普尺</h3>
+                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">导演助理 · 旁白配音</p>
+                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
+                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> 入围第三届民族影视与影视人类学作品展</p>
+                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 2023年亚洲研究协会AAS Film Expo影展</p>
+                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 美国波士顿亚洲研究协会年会展映</p>
+                </div>
+                <a href="https://news.cctv.com/2024/03/01/VIDE6IFWw1l3YS8FIc7UK7Kw240301.shtml" target="_blank" style="font-size: 0.75rem; color: #666; text-decoration: none; border-bottom: 1px solid #ccc; padding-bottom: 2px;">西藏新闻联播播出 →</a>
+            </div>
+
+            <div style="background: white; border: 1px solid var(--border); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.borderColor='#8b7355';this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='#e0ddd5';this.style.transform='translateY(0)';">
+                <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2023·安徽庐江</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">我去了外星球</h3>
+                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">副导演</p>
+                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
+                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> 入围第十三届中国纪录片学院奖</p>
+                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 理想国艺术电影节</p>
+                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 美国Global Film Exhibition最佳纪录长片</p>
+                </div>
+            </div>
+
+            <div style="background: white; border: 1px solid var(--border); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.borderColor='#8b7355';this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='#e0ddd5';this.style.transform='translateY(0)';">
+                <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">2025 · 青海同仁</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">热贡六月生万物</h3>
+                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">后期制作 · 旁白配音</p>
+                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
+                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">01</span> "青年服务国家"首都大学生暑期社会实践市级先进团队</p>
+                    <p style="margin-bottom: 6px;"><span style="color: #888; font-size: 0.75rem;">02</span> 中央民族大学优秀视频作品</p>
+                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 中央民族大学优秀调研报告</p>
+                </div>
+            </div>
+
+            <div style="background: white; border: 1px solid var(--border); padding: 35px 25px; transition: all 0.4s ease;" onmouseover="this.style.borderColor='#8b7355';this.style.transform='translateY(-5px)';" onmouseout="this.style.borderColor='#e0ddd5';this.style.transform='translateY(0)';">
+                <p style="font-size: 0.7rem; letter-spacing: 0.2em; color: #888; margin-bottom: 15px;">跨界合作 · 清华美院陶瓷系</p>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 12px; color: var(--text-primary);">物质文化实践</h3>
+                <p style="font-size: 0.8rem; color: #888; margin-bottom: 20px; line-height: 1.6;">三次项目合作</p>
+                <div style="font-size: 0.85rem; color: #666; line-height: 1.8; margin-bottom: 20px;">
+                    <p style="margin-bottom: 8px;"><span style="color: #888; font-size: 0.75rem;">01</span> 宜兴紫砂——教育部语言司多语种中华传统文化宣传视频</p>
+                    <p style="margin-bottom: 8px;"><span style="color: #888; font-size: 0.75rem;">02</span> 克拉玛依紫砂展览</p>
+                    <p><span style="color: #888; font-size: 0.75rem;">03</span> 2026年6月清华艺博中国现代民间陶瓷艺术展傣陶板块纪录片及展品图样拍摄（北京文化艺术基金支持的纵向课题）</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div style="background: var(--bg-warm); padding: 80px 60px; text-align: center;">
+        <div style="max-width: 700px; margin: 0 auto;">
+            <p style="font-size: 1.05rem; line-height: 2.2; color: #555; font-style: italic; font-family: var(--font-serif);">
+                "作为曾经的播音生，我一度急切地磨练有声语言表达与新闻采写编能力，想在'向世界传递中国声音'中奉献小我力量。而在一次次实践过程里，我发现田野间的具身性经验，远比演播室里的字正腔圆更为可贵。于是，我开始真正以身体为媒介，去地方上和真实而具体的个体打交道，去理解和记录那些在全球化浪潮中依然坚守的文化根脉。"
+            </p>
+        </div>
+    </div>
+</div>
+</section>
+
+<section class="footer" id="footer">
+    <div class="footer-content">
+        <h2 class="footer-name">李源凯 <span style="font-size: 1.2rem; color: #888; letter-spacing: 0.1em;">Kyle</span></h2>
+        <div class="footer-contact">
+            <p>中央民族大学 · 影视人类学硕士</p>
+            <p>邮箱：<a href="mailto:elyk@foxmail.com">elyk@foxmail.com</a></p>
+            <p>微信/电话：153-9777-1680</p>
+        </div>
+        <p class="footer-copy">2026 李源凯 · 影视人类学作品集</p>
+    </div>
+</section>
+
+<script>
+    // Voice slider
+    const voiceSlider = document.getElementById('voiceSlider');
+    if (voiceSlider) {
+        // free scroll, no snap
+    }
+
+    // Exp slider
+    const expSlider = document.getElementById('expSlider');
+    const expDots = document.querySelectorAll('.exp-dot');
+    function goToExp(index) {
+        const cards = expSlider.querySelectorAll('.exp-card');
+        if (cards[index]) cards[index].scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    }
+    if (expSlider) {
+        expSlider.addEventListener('scroll', () => {
+            const cards = expSlider.querySelectorAll('.exp-card');
+            let closest = 0, minDist = Infinity;
+            cards.forEach((card, i) => {
+                const dist = Math.abs(card.getBoundingClientRect().left - expSlider.getBoundingClientRect().left);
+                if (dist < minDist) { minDist = dist; closest = i; }
+            });
+            expDots.forEach((dot, i) => dot.classList.toggle('active', i === closest));
+        });
+    }
+
+    window.addEventListener('scroll', function() {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 100) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    function goToSlide(index) {
+        const slider = document.querySelector('.diary-slider');
+        const slides = document.querySelectorAll('.diary-slide');
+        const dots = document.querySelectorAll('.diary-dot');
+        if (slider && slides[index]) {
+            slider.scrollTo({ left: slides[index].offsetLeft - slider.offsetLeft, behavior: 'smooth' });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        }
+    }
+
+    const diarySlider = document.querySelector('.diary-slider');
+    if (diarySlider) {
+        diarySlider.addEventListener('scroll', function() {
+            const slides = document.querySelectorAll('.diary-slide');
+            const dots = document.querySelectorAll('.diary-dot');
+            const scrollLeft = this.scrollLeft;
+            const slideWidth = slides[0] ? slides[0].offsetWidth + 30 : 0;
+            if (slideWidth > 0) {
+                const index = Math.round(scrollLeft / slideWidth);
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
